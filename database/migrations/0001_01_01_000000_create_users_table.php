@@ -17,9 +17,8 @@ return new class extends Migration
             $table->string('prenom');
             $table->string('entreprise');
             $table->string('email')->unique();
-            $table->string('adresse')->unique();
-            $table->timestamp('email_verified_at')->nullable();
-            $table->string('password');
+            $table->string('adresse');
+            $table->string('ville');
             $table->rememberToken();
             $table->timestamps();
         });
