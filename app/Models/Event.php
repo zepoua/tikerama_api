@@ -23,4 +23,14 @@ class Event extends Model
     {
         return $this->hasMany(TicketType::class, 'ticket_type_event_id');
     }
+
+    public function orderIntents()
+    {
+        return $this->hasMany(OrderIntent::class, 'order_intent_event_id');
+    }
+
+    public function orders()
+    {
+        return $this->hasMany(Order::class, 'order_event_id');
+    }
 }

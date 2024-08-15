@@ -13,4 +13,9 @@ class OrderIntent extends Model
     protected $primaryKey = 'order_intent_id';
 
     protected $guarded = [];
+
+    public function event()
+    {
+        return $this->belongsTo(Event::class, 'order_event_id');
+    }
 }
