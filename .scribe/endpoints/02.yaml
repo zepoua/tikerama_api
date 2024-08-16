@@ -1,17 +1,17 @@
-name: 'Gestion de Ticket'
+name: 'Gestion de TicketType'
 description: |-
 
-  APIs pour gerer des Tickets
+  APIs pour gerer des TicketTypes
 endpoints:
   -
     httpMethods:
       - GET
-    uri: api/tickets
+    uri: api/ticket_types
     metadata:
-      groupName: 'Gestion de Ticket'
+      groupName: 'Gestion de TicketType'
       groupDescription: |-
 
-        APIs pour gerer des Tickets
+        APIs pour gerer des TicketTypes
       subgroup: ''
       subgroupDescription: ''
       title: 'Display a listing of the resource.'
@@ -41,8 +41,11 @@ endpoints:
     fileParameters: []
     responses:
       -
-        status: 401
-        content: '{"message":"Unauthenticated."}'
+        status: 500
+        content: |-
+          {
+              "message": "Server Error"
+          }
         headers:
           cache-control: 'no-cache, private'
           content-type: application/json
@@ -58,12 +61,12 @@ endpoints:
   -
     httpMethods:
       - POST
-    uri: api/tickets
+    uri: api/ticket_types
     metadata:
-      groupName: 'Gestion de Ticket'
+      groupName: 'Gestion de TicketType'
       groupDescription: |-
 
-        APIs pour gerer des Tickets
+        APIs pour gerer des TicketTypes
       subgroup: ''
       subgroupDescription: ''
       title: 'Store a newly created resource in storage.'
@@ -91,12 +94,12 @@ endpoints:
   -
     httpMethods:
       - GET
-    uri: 'api/tickets/{ticket_id}'
+    uri: 'api/ticket_types/{ticket_type_id}'
     metadata:
-      groupName: 'Gestion de Ticket'
+      groupName: 'Gestion de TicketType'
       groupDescription: |-
 
-        APIs pour gerer des Tickets
+        APIs pour gerer des TicketTypes
       subgroup: ''
       subgroupDescription: ''
       title: 'Display the specified resource.'
@@ -108,17 +111,17 @@ endpoints:
       Content-Type: application/json
       Accept: application/json
     urlParameters:
-      ticket_id:
-        name: ticket_id
-        description: 'The ID of the ticket.'
+      ticket_type_id:
+        name: ticket_type_id
+        description: 'The ID of the ticket type.'
         required: true
-        example: 7
+        example: 17
         type: integer
         enumValues: []
         exampleWasSpecified: false
         custom: []
     cleanUrlParameters:
-      ticket_id: 7
+      ticket_type_id: 17
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters: []
@@ -126,8 +129,11 @@ endpoints:
     fileParameters: []
     responses:
       -
-        status: 401
-        content: '{"message":"Unauthenticated."}'
+        status: 404
+        content: |-
+          {
+              "message": "No query results for model [App\\Models\\TicketType] 17"
+          }
         headers:
           cache-control: 'no-cache, private'
           content-type: application/json
@@ -144,12 +150,12 @@ endpoints:
     httpMethods:
       - PUT
       - PATCH
-    uri: 'api/tickets/{ticket_id}'
+    uri: 'api/ticket_types/{ticket_type_id}'
     metadata:
-      groupName: 'Gestion de Ticket'
+      groupName: 'Gestion de TicketType'
       groupDescription: |-
 
-        APIs pour gerer des Tickets
+        APIs pour gerer des TicketTypes
       subgroup: ''
       subgroupDescription: ''
       title: 'Update the specified resource in storage.'
@@ -161,17 +167,17 @@ endpoints:
       Content-Type: application/json
       Accept: application/json
     urlParameters:
-      ticket_id:
-        name: ticket_id
-        description: 'The ID of the ticket.'
+      ticket_type_id:
+        name: ticket_type_id
+        description: 'The ID of the ticket type.'
         required: true
-        example: 8
+        example: 2
         type: integer
         enumValues: []
         exampleWasSpecified: false
         custom: []
     cleanUrlParameters:
-      ticket_id: 8
+      ticket_type_id: 2
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters: []
@@ -187,12 +193,12 @@ endpoints:
   -
     httpMethods:
       - DELETE
-    uri: 'api/tickets/{ticket_id}'
+    uri: 'api/ticket_types/{ticket_type_id}'
     metadata:
-      groupName: 'Gestion de Ticket'
+      groupName: 'Gestion de TicketType'
       groupDescription: |-
 
-        APIs pour gerer des Tickets
+        APIs pour gerer des TicketTypes
       subgroup: ''
       subgroupDescription: ''
       title: 'Remove the specified resource from storage.'
@@ -204,17 +210,17 @@ endpoints:
       Content-Type: application/json
       Accept: application/json
     urlParameters:
-      ticket_id:
-        name: ticket_id
-        description: 'The ID of the ticket.'
+      ticket_type_id:
+        name: ticket_type_id
+        description: 'The ID of the ticket type.'
         required: true
-        example: 17
+        example: 16
         type: integer
         enumValues: []
         exampleWasSpecified: false
         custom: []
     cleanUrlParameters:
-      ticket_id: 17
+      ticket_type_id: 16
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters: []
@@ -230,12 +236,12 @@ endpoints:
   -
     httpMethods:
       - GET
-    uri: 'api/tick_event/{event_id}'
+    uri: 'api/tick_type_event/{event_id}'
     metadata:
-      groupName: 'Gestion de Ticket'
+      groupName: 'Gestion de TicketType'
       groupDescription: |-
 
-        APIs pour gerer des Tickets
+        APIs pour gerer des TicketTypes
       subgroup: ''
       subgroupDescription: ''
       title: 'Display a listing of the resource.'
@@ -265,70 +271,8 @@ endpoints:
     fileParameters: []
     responses:
       -
-        status: 401
-        content: '{"message":"Unauthenticated."}'
-        headers:
-          cache-control: 'no-cache, private'
-          content-type: application/json
-          access-control-allow-origin: '*'
-        description: null
-        custom: []
-    responseFields: []
-    auth: []
-    controller: null
-    method: null
-    route: null
-    custom: []
-  -
-    httpMethods:
-      - GET
-    uri: 'api/ticket_event/{event_id}/{ticket_type_id}'
-    metadata:
-      groupName: 'Gestion de Ticket'
-      groupDescription: |-
-
-        APIs pour gerer des Tickets
-      subgroup: ''
-      subgroupDescription: ''
-      title: 'Display a listing of the resource.'
-      description: 'Liste des tickets pour un evenement et un type de tycke specifique'
-      authenticated: false
-      custom: []
-    headers:
-      Authorization: 'Bearer {token}'
-      Content-Type: application/json
-      Accept: application/json
-    urlParameters:
-      event_id:
-        name: event_id
-        description: 'Event ID.'
-        required: true
-        example: 2
-        type: integer
-        enumValues: []
-        exampleWasSpecified: true
-        custom: []
-      ticket_type_id:
-        name: ticket_type_id
-        description: 'TicketType ID.'
-        required: true
-        example: 2
-        type: integer
-        enumValues: []
-        exampleWasSpecified: true
-        custom: []
-    cleanUrlParameters:
-      event_id: 2
-      ticket_type_id: 2
-    queryParameters: []
-    cleanQueryParameters: []
-    bodyParameters: []
-    cleanBodyParameters: []
-    fileParameters: []
-    responses:
-      -
-        status: 401
-        content: '{"message":"Unauthenticated."}'
+        status: 200
+        content: '{"current_page":1,"data":[],"first_page_url":"http:\/\/localhost\/api\/tick_type_event\/2?page=1","from":null,"last_page":1,"last_page_url":"http:\/\/localhost\/api\/tick_type_event\/2?page=1","links":[{"url":null,"label":"&laquo; Previous","active":false},{"url":"http:\/\/localhost\/api\/tick_type_event\/2?page=1","label":"1","active":true},{"url":null,"label":"Next &raquo;","active":false}],"next_page_url":null,"path":"http:\/\/localhost\/api\/tick_type_event\/2","per_page":10,"prev_page_url":null,"to":null,"total":0}'
         headers:
           cache-control: 'no-cache, private'
           content-type: application/json

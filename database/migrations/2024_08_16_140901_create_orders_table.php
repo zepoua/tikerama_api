@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id('order_id');
             $table->string('order_number', 50)->unique();
             $table->foreignId('order_event_id')->constrained('events', 'event_id')->onDelete('cascade');
+            $table->foreignId('order_client_id')->constrained('clients', 'client_id')->onDelete('cascade');
             $table->mediumInteger('order_price');
             $table->string('order_type', 50);
             $table->string('order_payment', 100);

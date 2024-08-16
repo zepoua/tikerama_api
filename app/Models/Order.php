@@ -19,6 +19,11 @@ class Order extends Model
         return $this->belongsTo(Event::class, 'order_event_id');
     }
 
+    public function client()
+    {
+        return $this->belongsTo(Client::class, 'order_client_id');
+    }
+
     public function tickets()
     {
         return $this->hasMany(Ticket::class, 'ticket_order_id');

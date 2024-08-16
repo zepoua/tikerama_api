@@ -9,7 +9,7 @@ class OrderIntent extends Model
 {
     use HasFactory;
 
-    protected $table = 'orders_intents';
+    protected $table = 'order_intents';
     protected $primaryKey = 'order_intent_id';
 
     protected $guarded = [];
@@ -17,5 +17,10 @@ class OrderIntent extends Model
     public function event()
     {
         return $this->belongsTo(Event::class, 'order_event_id');
+    }
+
+    public function client()
+    {
+        return $this->belongsTo(Client::class, 'order_client_event_id');
     }
 }

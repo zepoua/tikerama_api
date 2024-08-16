@@ -23,7 +23,12 @@ class TicketTypeController extends Controller
     {
         //liste des types de tickets disponibles pour un événement donné
 
-        $ticketTypes = TicketType::where('ticket_type_event_id', $event_id)->get();
+        $size = $request->size ?? 10;
+
+        $ticketTypes = TicketType::with('event')
+                        ->where('ticket_type_event_id', $event_id)
+                        ->paginate($size);
+
         return response()->json($ticketTypes);
     }
 

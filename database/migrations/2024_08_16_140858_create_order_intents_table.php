@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id('order_intent_id');
             //ajout d'un attribut pour lier une intention de commande a un evenement...
             $table->foreignId('order_intent_event_id')->constrained('events', 'event_id')->onDelete('cascade');
+            $table->foreignId('order_intent_client_id')->constrained('clients', 'client_id')->onDelete('cascade');
             $table->mediumInteger('order_intent_price');
             $table->string('order_intent_type', 50);
             $table->string('user_email', 100);

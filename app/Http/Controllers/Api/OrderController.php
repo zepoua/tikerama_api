@@ -15,28 +15,57 @@ class OrderController extends Controller
 {
     /**
      * Display a listing of the resource.
-     * Liste de toutes les commandes
+     * Liste de toutes les commandes d'un client
+     * @urlParam size integer Taille par page. Par defaut = 20. Example:20
      *@header Authorization Bearer {token}
      */
-    public function index()
+    public function index(Request $request)
     {
         //liste des commandes
 
-        return response()->json(Order::all());
+        $size = $request->size ?? 10;
+        return response()->json(Order::paginate($size));
     }
+
+    /**
+     * Display a listing of the resource.
+     * Liste de toutes les commandes d'un client
+     * @urlParam size integer Taille par page. Par defaut = 20. Example:20
+     * @urlParam client_id int required Client ID. Example:2
+     *@header Authorization Bearer {token}
+     */
+    public function clientOrders(Request $request, $client_id)
+    {
+        //liste des commandes d'un client
+
+        $size = $request->size ?? 10;
+        $orders = Order::with(['event', 'client'])
+                    ->where('order_client_id', $client_id)
+                    ->paginate($size);
+
+        return response()->json($orders);
+    }
+
+
 
     /**
      * Display a listing of the resource.
      * Liste de toutes les commandes pour un evenement
      * @urlParam event_id int required Event ID. Example:2
+     * @urlParam size integer Taille par page. Par defaut = 20. Example:20
      * @header Authorization Bearer {token}
      */
 
-    public function eventOrder($event_id)
+    public function eventOrder(Request $request, $event_id)
     {
         //liste des commandes pour un evenement
 
-        return response()->json(Order::where('order_event_id', $event_id));
+        $size = $request->size ?? 10;
+        $orders = Order::with(['event', 'client'])
+                       ->where('order_event_id', $event_id)
+                       ->paginate($size);
+
+        return response()->json($orders);
     }
 
 
@@ -55,7 +84,7 @@ class OrderController extends Controller
      */
     public function show(Order $order)
     {
-        //
+        return response()->json($order);
     }
 
     /**

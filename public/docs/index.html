@@ -66,13 +66,25 @@
                     <a href="#authenticating-requests">Authenticating requests</a>
                 </li>
                             </ul>
-                    <ul id="tocify-header-endpoints" class="tocify-header">
-                <li class="tocify-item level-1" data-unique="endpoints">
-                    <a href="#endpoints">Endpoints</a>
+                    <ul id="tocify-header-gestion-de-client" class="tocify-header">
+                <li class="tocify-item level-1" data-unique="gestion-de-client">
+                    <a href="#gestion-de-client">Gestion de Client</a>
                 </li>
-                                    <ul id="tocify-subheader-endpoints" class="tocify-subheader">
-                                                    <li class="tocify-item level-2" data-unique="endpoints-GETapi-user">
-                                <a href="#endpoints-GETapi-user">GET api/user</a>
+                                    <ul id="tocify-subheader-gestion-de-client" class="tocify-subheader">
+                                                    <li class="tocify-item level-2" data-unique="gestion-de-client-GETapi-clients">
+                                <a href="#gestion-de-client-GETapi-clients">Display a listing of the resource.</a>
+                            </li>
+                                                                                <li class="tocify-item level-2" data-unique="gestion-de-client-POSTapi-clients">
+                                <a href="#gestion-de-client-POSTapi-clients">Store a newly created resource in storage.</a>
+                            </li>
+                                                                                <li class="tocify-item level-2" data-unique="gestion-de-client-GETapi-clients--client_id-">
+                                <a href="#gestion-de-client-GETapi-clients--client_id-">Display the specified resource.</a>
+                            </li>
+                                                                                <li class="tocify-item level-2" data-unique="gestion-de-client-PUTapi-clients--client_id-">
+                                <a href="#gestion-de-client-PUTapi-clients--client_id-">Update the specified resource in storage.</a>
+                            </li>
+                                                                                <li class="tocify-item level-2" data-unique="gestion-de-client-DELETEapi-clients--client_id-">
+                                <a href="#gestion-de-client-DELETEapi-clients--client_id-">Remove the specified resource from storage.</a>
                             </li>
                                                                         </ul>
                             </ul>
@@ -121,8 +133,11 @@
                                                                                 <li class="tocify-item level-2" data-unique="gestion-de-order-DELETEapi-order--order_id-">
                                 <a href="#gestion-de-order-DELETEapi-order--order_id-">Remove the specified resource from storage.</a>
                             </li>
-                                                                                <li class="tocify-item level-2" data-unique="gestion-de-order-GETapi-order_event--event_id-">
-                                <a href="#gestion-de-order-GETapi-order_event--event_id-">Display a listing of the resource.</a>
+                                                                                <li class="tocify-item level-2" data-unique="gestion-de-order-GETapi-event_order--event_id-">
+                                <a href="#gestion-de-order-GETapi-event_order--event_id-">Display a listing of the resource.</a>
+                            </li>
+                                                                                <li class="tocify-item level-2" data-unique="gestion-de-order-GETapi-client_order--client_id-">
+                                <a href="#gestion-de-order-GETapi-client_order--client_id-">Display a listing of the resource.</a>
                             </li>
                                                                         </ul>
                             </ul>
@@ -234,31 +249,340 @@ You can switch the language used with the tabs at the top right (or from the nav
         <h1 id="authenticating-requests">Authenticating requests</h1>
 <p>This API is not authenticated.</p>
 
-        <h1 id="endpoints">Endpoints</h1>
+        <h1 id="gestion-de-client">Gestion de Client</h1>
 
-    
+    <p>APIs pour gerer les Clients</p>
 
-                                <h2 id="endpoints-GETapi-user">GET api/user</h2>
+                                <h2 id="gestion-de-client-GETapi-clients">Display a listing of the resource.</h2>
 
 <p>
 </p>
 
+<p>liste des clients</p>
 
-
-<span id="example-requests-GETapi-user">
+<span id="example-requests-GETapi-clients">
 <blockquote>Example request:</blockquote>
 
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request GET \
-    --get "http://localhost/api/user" \
+    --get "http://localhost/api/clients" \
+    --header "Authorization: Bearer {token}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json"</code></pre></div>
 
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://localhost/api/user"
+    "http://localhost/api/clients"
+);
+
+const headers = {
+    "Authorization": "Bearer {token}",
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+fetch(url, {
+    method: "GET",
+    headers,
+}).then(response =&gt; response.json());</code></pre></div>
+
+</span>
+
+<span id="example-responses-GETapi-clients">
+            <blockquote>
+            <p>Example response (200):</p>
+        </blockquote>
+                <details class="annotation">
+            <summary style="cursor: pointer;">
+                <small onclick="textContent = parentElement.parentElement.open ? 'Show headers' : 'Hide headers'">Show headers</small>
+            </summary>
+            <pre><code class="language-http">cache-control: no-cache, private
+content-type: application/json
+access-control-allow-origin: *
+ </code></pre></details>         <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;current_page&quot;: 1,
+    &quot;data&quot;: [
+        {
+            &quot;client_id&quot;: 1,
+            &quot;nom&quot;: &quot;jjn&quot;,
+            &quot;prenom&quot;: &quot;hjj&quot;,
+            &quot;email&quot;: &quot;nnj&quot;,
+            &quot;telephone&quot;: &quot;000000&quot;,
+            &quot;adresse&quot;: &quot;jjj&quot;,
+            &quot;created_at&quot;: &quot;2024-08-16T15:09:27.000000Z&quot;,
+            &quot;updated_at&quot;: &quot;2024-08-16T15:09:29.000000Z&quot;
+        }
+    ],
+    &quot;first_page_url&quot;: &quot;http://localhost/api/clients?page=1&quot;,
+    &quot;from&quot;: 1,
+    &quot;last_page&quot;: 1,
+    &quot;last_page_url&quot;: &quot;http://localhost/api/clients?page=1&quot;,
+    &quot;links&quot;: [
+        {
+            &quot;url&quot;: null,
+            &quot;label&quot;: &quot;&amp;laquo; Previous&quot;,
+            &quot;active&quot;: false
+        },
+        {
+            &quot;url&quot;: &quot;http://localhost/api/clients?page=1&quot;,
+            &quot;label&quot;: &quot;1&quot;,
+            &quot;active&quot;: true
+        },
+        {
+            &quot;url&quot;: null,
+            &quot;label&quot;: &quot;Next &amp;raquo;&quot;,
+            &quot;active&quot;: false
+        }
+    ],
+    &quot;next_page_url&quot;: null,
+    &quot;path&quot;: &quot;http://localhost/api/clients&quot;,
+    &quot;per_page&quot;: 10,
+    &quot;prev_page_url&quot;: null,
+    &quot;to&quot;: 1,
+    &quot;total&quot;: 1
+}</code>
+ </pre>
+    </span>
+<span id="execution-results-GETapi-clients" hidden>
+    <blockquote>Received response<span
+                id="execution-response-status-GETapi-clients"></span>:
+    </blockquote>
+    <pre class="json"><code id="execution-response-content-GETapi-clients"
+      data-empty-response-text="<Empty response>" style="max-height: 400px;"></code></pre>
+</span>
+<span id="execution-error-GETapi-clients" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-GETapi-clients">
+
+Tip: Check that you&#039;re properly connected to the network.
+If you&#039;re a maintainer of ths API, verify that your API is running and you&#039;ve enabled CORS.
+You can check the Dev Tools console for debugging information.</code></pre>
+</span>
+<form id="form-GETapi-clients" data-method="GET"
+      data-path="api/clients"
+      data-authed="0"
+      data-hasfiles="0"
+      data-isarraybody="0"
+      autocomplete="off"
+      onsubmit="event.preventDefault(); executeTryOut('GETapi-clients', this);">
+    <h3>
+        Request&nbsp;&nbsp;&nbsp;
+                    <button type="button"
+                    style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-tryout-GETapi-clients"
+                    onclick="tryItOut('GETapi-clients');">Try it out ⚡
+            </button>
+            <button type="button"
+                    style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-canceltryout-GETapi-clients"
+                    onclick="cancelTryOut('GETapi-clients');" hidden>Cancel 🛑
+            </button>&nbsp;&nbsp;
+            <button type="submit"
+                    style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-executetryout-GETapi-clients"
+                    data-initial-text="Send Request 💥"
+                    data-loading-text="⏱ Sending..."
+                    hidden>Send Request 💥
+            </button>
+            </h3>
+            <p>
+            <small class="badge badge-green">GET</small>
+            <b><code>api/clients</code></b>
+        </p>
+                <h4 class="fancy-heading-panel"><b>Headers</b></h4>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Authorization</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Authorization"                data-endpoint="GETapi-clients"
+               value="Bearer {token}"
+               data-component="header">
+    <br>
+<p>Example: <code>Bearer {token}</code></p>
+            </div>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Content-Type</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Content-Type"                data-endpoint="GETapi-clients"
+               value="application/json"
+               data-component="header">
+    <br>
+<p>Example: <code>application/json</code></p>
+            </div>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Accept</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Accept"                data-endpoint="GETapi-clients"
+               value="application/json"
+               data-component="header">
+    <br>
+<p>Example: <code>application/json</code></p>
+            </div>
+                        <h4 class="fancy-heading-panel"><b>URL Parameters</b></h4>
+                    <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>size</code></b>&nbsp;&nbsp;
+<small>integer</small>&nbsp;
+<i>optional</i> &nbsp;
+                <input type="number" style="display: none"
+               step="any"               name="size"                data-endpoint="GETapi-clients"
+               value="20"
+               data-component="url">
+    <br>
+<p>Taille par page. Par defaut = 20. Example: <code>20</code></p>
+            </div>
+                    </form>
+
+                    <h2 id="gestion-de-client-POSTapi-clients">Store a newly created resource in storage.</h2>
+
+<p>
+</p>
+
+
+
+<span id="example-requests-POSTapi-clients">
+<blockquote>Example request:</blockquote>
+
+
+<div class="bash-example">
+    <pre><code class="language-bash">curl --request POST \
+    "http://localhost/api/clients" \
+    --header "Authorization: Bearer {token}" \
+    --header "Content-Type: application/json" \
+    --header "Accept: application/json"</code></pre></div>
+
+
+<div class="javascript-example">
+    <pre><code class="language-javascript">const url = new URL(
+    "http://localhost/api/clients"
+);
+
+const headers = {
+    "Authorization": "Bearer {token}",
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+fetch(url, {
+    method: "POST",
+    headers,
+}).then(response =&gt; response.json());</code></pre></div>
+
+</span>
+
+<span id="example-responses-POSTapi-clients">
+</span>
+<span id="execution-results-POSTapi-clients" hidden>
+    <blockquote>Received response<span
+                id="execution-response-status-POSTapi-clients"></span>:
+    </blockquote>
+    <pre class="json"><code id="execution-response-content-POSTapi-clients"
+      data-empty-response-text="<Empty response>" style="max-height: 400px;"></code></pre>
+</span>
+<span id="execution-error-POSTapi-clients" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-POSTapi-clients">
+
+Tip: Check that you&#039;re properly connected to the network.
+If you&#039;re a maintainer of ths API, verify that your API is running and you&#039;ve enabled CORS.
+You can check the Dev Tools console for debugging information.</code></pre>
+</span>
+<form id="form-POSTapi-clients" data-method="POST"
+      data-path="api/clients"
+      data-authed="0"
+      data-hasfiles="0"
+      data-isarraybody="0"
+      autocomplete="off"
+      onsubmit="event.preventDefault(); executeTryOut('POSTapi-clients', this);">
+    <h3>
+        Request&nbsp;&nbsp;&nbsp;
+                    <button type="button"
+                    style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-tryout-POSTapi-clients"
+                    onclick="tryItOut('POSTapi-clients');">Try it out ⚡
+            </button>
+            <button type="button"
+                    style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-canceltryout-POSTapi-clients"
+                    onclick="cancelTryOut('POSTapi-clients');" hidden>Cancel 🛑
+            </button>&nbsp;&nbsp;
+            <button type="submit"
+                    style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-executetryout-POSTapi-clients"
+                    data-initial-text="Send Request 💥"
+                    data-loading-text="⏱ Sending..."
+                    hidden>Send Request 💥
+            </button>
+            </h3>
+            <p>
+            <small class="badge badge-black">POST</small>
+            <b><code>api/clients</code></b>
+        </p>
+                <h4 class="fancy-heading-panel"><b>Headers</b></h4>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Authorization</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Authorization"                data-endpoint="POSTapi-clients"
+               value="Bearer {token}"
+               data-component="header">
+    <br>
+<p>Example: <code>Bearer {token}</code></p>
+            </div>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Content-Type</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Content-Type"                data-endpoint="POSTapi-clients"
+               value="application/json"
+               data-component="header">
+    <br>
+<p>Example: <code>application/json</code></p>
+            </div>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Accept</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Accept"                data-endpoint="POSTapi-clients"
+               value="application/json"
+               data-component="header">
+    <br>
+<p>Example: <code>application/json</code></p>
+            </div>
+                        </form>
+
+                    <h2 id="gestion-de-client-GETapi-clients--client_id-">Display the specified resource.</h2>
+
+<p>
+</p>
+
+
+
+<span id="example-requests-GETapi-clients--client_id-">
+<blockquote>Example request:</blockquote>
+
+
+<div class="bash-example">
+    <pre><code class="language-bash">curl --request GET \
+    --get "http://localhost/api/clients/1" \
+    --header "Content-Type: application/json" \
+    --header "Accept: application/json"</code></pre></div>
+
+
+<div class="javascript-example">
+    <pre><code class="language-javascript">const url = new URL(
+    "http://localhost/api/clients/1"
 );
 
 const headers = {
@@ -273,9 +597,9 @@ fetch(url, {
 
 </span>
 
-<span id="example-responses-GETapi-user">
+<span id="example-responses-GETapi-clients--client_id-">
             <blockquote>
-            <p>Example response (401):</p>
+            <p>Example response (200):</p>
         </blockquote>
                 <details class="annotation">
             <summary style="cursor: pointer;">
@@ -287,47 +611,54 @@ access-control-allow-origin: *
  </code></pre></details>         <pre>
 
 <code class="language-json" style="max-height: 300px;">{
-    &quot;message&quot;: &quot;Unauthenticated.&quot;
+    &quot;client_id&quot;: 1,
+    &quot;nom&quot;: &quot;jjn&quot;,
+    &quot;prenom&quot;: &quot;hjj&quot;,
+    &quot;email&quot;: &quot;nnj&quot;,
+    &quot;telephone&quot;: &quot;000000&quot;,
+    &quot;adresse&quot;: &quot;jjj&quot;,
+    &quot;created_at&quot;: &quot;2024-08-16T15:09:27.000000Z&quot;,
+    &quot;updated_at&quot;: &quot;2024-08-16T15:09:29.000000Z&quot;
 }</code>
  </pre>
     </span>
-<span id="execution-results-GETapi-user" hidden>
+<span id="execution-results-GETapi-clients--client_id-" hidden>
     <blockquote>Received response<span
-                id="execution-response-status-GETapi-user"></span>:
+                id="execution-response-status-GETapi-clients--client_id-"></span>:
     </blockquote>
-    <pre class="json"><code id="execution-response-content-GETapi-user"
+    <pre class="json"><code id="execution-response-content-GETapi-clients--client_id-"
       data-empty-response-text="<Empty response>" style="max-height: 400px;"></code></pre>
 </span>
-<span id="execution-error-GETapi-user" hidden>
+<span id="execution-error-GETapi-clients--client_id-" hidden>
     <blockquote>Request failed with error:</blockquote>
-    <pre><code id="execution-error-message-GETapi-user">
+    <pre><code id="execution-error-message-GETapi-clients--client_id-">
 
 Tip: Check that you&#039;re properly connected to the network.
 If you&#039;re a maintainer of ths API, verify that your API is running and you&#039;ve enabled CORS.
 You can check the Dev Tools console for debugging information.</code></pre>
 </span>
-<form id="form-GETapi-user" data-method="GET"
-      data-path="api/user"
+<form id="form-GETapi-clients--client_id-" data-method="GET"
+      data-path="api/clients/{client_id}"
       data-authed="0"
       data-hasfiles="0"
       data-isarraybody="0"
       autocomplete="off"
-      onsubmit="event.preventDefault(); executeTryOut('GETapi-user', this);">
+      onsubmit="event.preventDefault(); executeTryOut('GETapi-clients--client_id-', this);">
     <h3>
         Request&nbsp;&nbsp;&nbsp;
                     <button type="button"
                     style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-tryout-GETapi-user"
-                    onclick="tryItOut('GETapi-user');">Try it out ⚡
+                    id="btn-tryout-GETapi-clients--client_id-"
+                    onclick="tryItOut('GETapi-clients--client_id-');">Try it out ⚡
             </button>
             <button type="button"
                     style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-canceltryout-GETapi-user"
-                    onclick="cancelTryOut('GETapi-user');" hidden>Cancel 🛑
+                    id="btn-canceltryout-GETapi-clients--client_id-"
+                    onclick="cancelTryOut('GETapi-clients--client_id-');" hidden>Cancel 🛑
             </button>&nbsp;&nbsp;
             <button type="submit"
                     style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-executetryout-GETapi-user"
+                    id="btn-executetryout-GETapi-clients--client_id-"
                     data-initial-text="Send Request 💥"
                     data-loading-text="⏱ Sending..."
                     hidden>Send Request 💥
@@ -335,7 +666,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
             </h3>
             <p>
             <small class="badge badge-green">GET</small>
-            <b><code>api/user</code></b>
+            <b><code>api/clients/{client_id}</code></b>
         </p>
                 <h4 class="fancy-heading-panel"><b>Headers</b></h4>
                                 <div style="padding-left: 28px; clear: unset;">
@@ -343,7 +674,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 &nbsp;
  &nbsp;
                 <input type="text" style="display: none"
-                              name="Content-Type"                data-endpoint="GETapi-user"
+                              name="Content-Type"                data-endpoint="GETapi-clients--client_id-"
                value="application/json"
                data-component="header">
     <br>
@@ -354,13 +685,269 @@ You can check the Dev Tools console for debugging information.</code></pre>
 &nbsp;
  &nbsp;
                 <input type="text" style="display: none"
-                              name="Accept"                data-endpoint="GETapi-user"
+                              name="Accept"                data-endpoint="GETapi-clients--client_id-"
                value="application/json"
                data-component="header">
     <br>
 <p>Example: <code>application/json</code></p>
             </div>
-                        </form>
+                        <h4 class="fancy-heading-panel"><b>URL Parameters</b></h4>
+                    <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>client_id</code></b>&nbsp;&nbsp;
+<small>integer</small>&nbsp;
+ &nbsp;
+                <input type="number" style="display: none"
+               step="any"               name="client_id"                data-endpoint="GETapi-clients--client_id-"
+               value="1"
+               data-component="url">
+    <br>
+<p>The ID of the client. Example: <code>1</code></p>
+            </div>
+                    </form>
+
+                    <h2 id="gestion-de-client-PUTapi-clients--client_id-">Update the specified resource in storage.</h2>
+
+<p>
+</p>
+
+
+
+<span id="example-requests-PUTapi-clients--client_id-">
+<blockquote>Example request:</blockquote>
+
+
+<div class="bash-example">
+    <pre><code class="language-bash">curl --request PUT \
+    "http://localhost/api/clients/1" \
+    --header "Content-Type: application/json" \
+    --header "Accept: application/json"</code></pre></div>
+
+
+<div class="javascript-example">
+    <pre><code class="language-javascript">const url = new URL(
+    "http://localhost/api/clients/1"
+);
+
+const headers = {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+fetch(url, {
+    method: "PUT",
+    headers,
+}).then(response =&gt; response.json());</code></pre></div>
+
+</span>
+
+<span id="example-responses-PUTapi-clients--client_id-">
+</span>
+<span id="execution-results-PUTapi-clients--client_id-" hidden>
+    <blockquote>Received response<span
+                id="execution-response-status-PUTapi-clients--client_id-"></span>:
+    </blockquote>
+    <pre class="json"><code id="execution-response-content-PUTapi-clients--client_id-"
+      data-empty-response-text="<Empty response>" style="max-height: 400px;"></code></pre>
+</span>
+<span id="execution-error-PUTapi-clients--client_id-" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-PUTapi-clients--client_id-">
+
+Tip: Check that you&#039;re properly connected to the network.
+If you&#039;re a maintainer of ths API, verify that your API is running and you&#039;ve enabled CORS.
+You can check the Dev Tools console for debugging information.</code></pre>
+</span>
+<form id="form-PUTapi-clients--client_id-" data-method="PUT"
+      data-path="api/clients/{client_id}"
+      data-authed="0"
+      data-hasfiles="0"
+      data-isarraybody="0"
+      autocomplete="off"
+      onsubmit="event.preventDefault(); executeTryOut('PUTapi-clients--client_id-', this);">
+    <h3>
+        Request&nbsp;&nbsp;&nbsp;
+                    <button type="button"
+                    style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-tryout-PUTapi-clients--client_id-"
+                    onclick="tryItOut('PUTapi-clients--client_id-');">Try it out ⚡
+            </button>
+            <button type="button"
+                    style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-canceltryout-PUTapi-clients--client_id-"
+                    onclick="cancelTryOut('PUTapi-clients--client_id-');" hidden>Cancel 🛑
+            </button>&nbsp;&nbsp;
+            <button type="submit"
+                    style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-executetryout-PUTapi-clients--client_id-"
+                    data-initial-text="Send Request 💥"
+                    data-loading-text="⏱ Sending..."
+                    hidden>Send Request 💥
+            </button>
+            </h3>
+            <p>
+            <small class="badge badge-darkblue">PUT</small>
+            <b><code>api/clients/{client_id}</code></b>
+        </p>
+            <p>
+            <small class="badge badge-purple">PATCH</small>
+            <b><code>api/clients/{client_id}</code></b>
+        </p>
+                <h4 class="fancy-heading-panel"><b>Headers</b></h4>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Content-Type</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Content-Type"                data-endpoint="PUTapi-clients--client_id-"
+               value="application/json"
+               data-component="header">
+    <br>
+<p>Example: <code>application/json</code></p>
+            </div>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Accept</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Accept"                data-endpoint="PUTapi-clients--client_id-"
+               value="application/json"
+               data-component="header">
+    <br>
+<p>Example: <code>application/json</code></p>
+            </div>
+                        <h4 class="fancy-heading-panel"><b>URL Parameters</b></h4>
+                    <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>client_id</code></b>&nbsp;&nbsp;
+<small>integer</small>&nbsp;
+ &nbsp;
+                <input type="number" style="display: none"
+               step="any"               name="client_id"                data-endpoint="PUTapi-clients--client_id-"
+               value="1"
+               data-component="url">
+    <br>
+<p>The ID of the client. Example: <code>1</code></p>
+            </div>
+                    </form>
+
+                    <h2 id="gestion-de-client-DELETEapi-clients--client_id-">Remove the specified resource from storage.</h2>
+
+<p>
+</p>
+
+
+
+<span id="example-requests-DELETEapi-clients--client_id-">
+<blockquote>Example request:</blockquote>
+
+
+<div class="bash-example">
+    <pre><code class="language-bash">curl --request DELETE \
+    "http://localhost/api/clients/1" \
+    --header "Content-Type: application/json" \
+    --header "Accept: application/json"</code></pre></div>
+
+
+<div class="javascript-example">
+    <pre><code class="language-javascript">const url = new URL(
+    "http://localhost/api/clients/1"
+);
+
+const headers = {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+fetch(url, {
+    method: "DELETE",
+    headers,
+}).then(response =&gt; response.json());</code></pre></div>
+
+</span>
+
+<span id="example-responses-DELETEapi-clients--client_id-">
+</span>
+<span id="execution-results-DELETEapi-clients--client_id-" hidden>
+    <blockquote>Received response<span
+                id="execution-response-status-DELETEapi-clients--client_id-"></span>:
+    </blockquote>
+    <pre class="json"><code id="execution-response-content-DELETEapi-clients--client_id-"
+      data-empty-response-text="<Empty response>" style="max-height: 400px;"></code></pre>
+</span>
+<span id="execution-error-DELETEapi-clients--client_id-" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-DELETEapi-clients--client_id-">
+
+Tip: Check that you&#039;re properly connected to the network.
+If you&#039;re a maintainer of ths API, verify that your API is running and you&#039;ve enabled CORS.
+You can check the Dev Tools console for debugging information.</code></pre>
+</span>
+<form id="form-DELETEapi-clients--client_id-" data-method="DELETE"
+      data-path="api/clients/{client_id}"
+      data-authed="0"
+      data-hasfiles="0"
+      data-isarraybody="0"
+      autocomplete="off"
+      onsubmit="event.preventDefault(); executeTryOut('DELETEapi-clients--client_id-', this);">
+    <h3>
+        Request&nbsp;&nbsp;&nbsp;
+                    <button type="button"
+                    style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-tryout-DELETEapi-clients--client_id-"
+                    onclick="tryItOut('DELETEapi-clients--client_id-');">Try it out ⚡
+            </button>
+            <button type="button"
+                    style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-canceltryout-DELETEapi-clients--client_id-"
+                    onclick="cancelTryOut('DELETEapi-clients--client_id-');" hidden>Cancel 🛑
+            </button>&nbsp;&nbsp;
+            <button type="submit"
+                    style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-executetryout-DELETEapi-clients--client_id-"
+                    data-initial-text="Send Request 💥"
+                    data-loading-text="⏱ Sending..."
+                    hidden>Send Request 💥
+            </button>
+            </h3>
+            <p>
+            <small class="badge badge-red">DELETE</small>
+            <b><code>api/clients/{client_id}</code></b>
+        </p>
+                <h4 class="fancy-heading-panel"><b>Headers</b></h4>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Content-Type</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Content-Type"                data-endpoint="DELETEapi-clients--client_id-"
+               value="application/json"
+               data-component="header">
+    <br>
+<p>Example: <code>application/json</code></p>
+            </div>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Accept</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Accept"                data-endpoint="DELETEapi-clients--client_id-"
+               value="application/json"
+               data-component="header">
+    <br>
+<p>Example: <code>application/json</code></p>
+            </div>
+                        <h4 class="fancy-heading-panel"><b>URL Parameters</b></h4>
+                    <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>client_id</code></b>&nbsp;&nbsp;
+<small>integer</small>&nbsp;
+ &nbsp;
+                <input type="number" style="display: none"
+               step="any"               name="client_id"                data-endpoint="DELETEapi-clients--client_id-"
+               value="1"
+               data-component="url">
+    <br>
+<p>The ID of the client. Example: <code>1</code></p>
+            </div>
+                    </form>
 
                 <h1 id="gestion-de-event">Gestion de Event</h1>
 
@@ -405,7 +992,7 @@ fetch(url, {
 
 <span id="example-responses-GETapi-events">
             <blockquote>
-            <p>Example response (401):</p>
+            <p>Example response (200):</p>
         </blockquote>
                 <details class="annotation">
             <summary style="cursor: pointer;">
@@ -417,7 +1004,48 @@ access-control-allow-origin: *
  </code></pre></details>         <pre>
 
 <code class="language-json" style="max-height: 300px;">{
-    &quot;message&quot;: &quot;Unauthenticated.&quot;
+    &quot;current_page&quot;: 1,
+    &quot;data&quot;: [
+        {
+            &quot;event_id&quot;: 1,
+            &quot;event_category&quot;: &quot;Concert-Spectacle&quot;,
+            &quot;event_title&quot;: &quot;DJ Zepoua&quot;,
+            &quot;event_description&quot;: &quot;concert&quot;,
+            &quot;event_date&quot;: &quot;2024-08-15 21:11:36&quot;,
+            &quot;event_image&quot;: &quot;uiii&quot;,
+            &quot;event_city&quot;: &quot;Lome&quot;,
+            &quot;event_address&quot;: &quot;Agoe&quot;,
+            &quot;event_status&quot;: &quot;upcoming&quot;,
+            &quot;event_created_on&quot;: &quot;2024-08-15 21:11:59&quot;
+        }
+    ],
+    &quot;first_page_url&quot;: &quot;http://localhost/api/events?page=1&quot;,
+    &quot;from&quot;: 1,
+    &quot;last_page&quot;: 1,
+    &quot;last_page_url&quot;: &quot;http://localhost/api/events?page=1&quot;,
+    &quot;links&quot;: [
+        {
+            &quot;url&quot;: null,
+            &quot;label&quot;: &quot;&amp;laquo; Previous&quot;,
+            &quot;active&quot;: false
+        },
+        {
+            &quot;url&quot;: &quot;http://localhost/api/events?page=1&quot;,
+            &quot;label&quot;: &quot;1&quot;,
+            &quot;active&quot;: true
+        },
+        {
+            &quot;url&quot;: null,
+            &quot;label&quot;: &quot;Next &amp;raquo;&quot;,
+            &quot;active&quot;: false
+        }
+    ],
+    &quot;next_page_url&quot;: null,
+    &quot;path&quot;: &quot;http://localhost/api/events&quot;,
+    &quot;per_page&quot;: 10,
+    &quot;prev_page_url&quot;: null,
+    &quot;to&quot;: 1,
+    &quot;total&quot;: 1
 }</code>
  </pre>
     </span>
@@ -675,7 +1303,7 @@ fetch(url, {
 
 <span id="example-responses-GETapi-events--event_id-">
             <blockquote>
-            <p>Example response (401):</p>
+            <p>Example response (200):</p>
         </blockquote>
                 <details class="annotation">
             <summary style="cursor: pointer;">
@@ -687,7 +1315,16 @@ access-control-allow-origin: *
  </code></pre></details>         <pre>
 
 <code class="language-json" style="max-height: 300px;">{
-    &quot;message&quot;: &quot;Unauthenticated.&quot;
+    &quot;event_id&quot;: 1,
+    &quot;event_category&quot;: &quot;Concert-Spectacle&quot;,
+    &quot;event_title&quot;: &quot;DJ Zepoua&quot;,
+    &quot;event_description&quot;: &quot;concert&quot;,
+    &quot;event_date&quot;: &quot;2024-08-15 21:11:36&quot;,
+    &quot;event_image&quot;: &quot;uiii&quot;,
+    &quot;event_city&quot;: &quot;Lome&quot;,
+    &quot;event_address&quot;: &quot;Agoe&quot;,
+    &quot;event_status&quot;: &quot;upcoming&quot;,
+    &quot;event_created_on&quot;: &quot;2024-08-15 21:11:59&quot;
 }</code>
  </pre>
     </span>
@@ -1094,7 +1731,7 @@ fetch(url, {
 
 <span id="example-responses-GETapi-up_events">
             <blockquote>
-            <p>Example response (401):</p>
+            <p>Example response (200):</p>
         </blockquote>
                 <details class="annotation">
             <summary style="cursor: pointer;">
@@ -1106,7 +1743,35 @@ access-control-allow-origin: *
  </code></pre></details>         <pre>
 
 <code class="language-json" style="max-height: 300px;">{
-    &quot;message&quot;: &quot;Unauthenticated.&quot;
+    &quot;current_page&quot;: 1,
+    &quot;data&quot;: [],
+    &quot;first_page_url&quot;: &quot;http://localhost/api/up_events?page=1&quot;,
+    &quot;from&quot;: null,
+    &quot;last_page&quot;: 1,
+    &quot;last_page_url&quot;: &quot;http://localhost/api/up_events?page=1&quot;,
+    &quot;links&quot;: [
+        {
+            &quot;url&quot;: null,
+            &quot;label&quot;: &quot;&amp;laquo; Previous&quot;,
+            &quot;active&quot;: false
+        },
+        {
+            &quot;url&quot;: &quot;http://localhost/api/up_events?page=1&quot;,
+            &quot;label&quot;: &quot;1&quot;,
+            &quot;active&quot;: true
+        },
+        {
+            &quot;url&quot;: null,
+            &quot;label&quot;: &quot;Next &amp;raquo;&quot;,
+            &quot;active&quot;: false
+        }
+    ],
+    &quot;next_page_url&quot;: null,
+    &quot;path&quot;: &quot;http://localhost/api/up_events&quot;,
+    &quot;per_page&quot;: 10,
+    &quot;prev_page_url&quot;: null,
+    &quot;to&quot;: null,
+    &quot;total&quot;: 0
 }</code>
  </pre>
     </span>
@@ -1213,7 +1878,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 <p>
 </p>
 
-<p>Liste de toutes les commandes</p>
+<p>Liste de toutes les commandes d'un client</p>
 
 <span id="example-requests-GETapi-order">
 <blockquote>Example request:</blockquote>
@@ -1247,7 +1912,7 @@ fetch(url, {
 
 <span id="example-responses-GETapi-order">
             <blockquote>
-            <p>Example response (401):</p>
+            <p>Example response (200):</p>
         </blockquote>
                 <details class="annotation">
             <summary style="cursor: pointer;">
@@ -1259,7 +1924,35 @@ access-control-allow-origin: *
  </code></pre></details>         <pre>
 
 <code class="language-json" style="max-height: 300px;">{
-    &quot;message&quot;: &quot;Unauthenticated.&quot;
+    &quot;current_page&quot;: 1,
+    &quot;data&quot;: [],
+    &quot;first_page_url&quot;: &quot;http://localhost/api/order?page=1&quot;,
+    &quot;from&quot;: null,
+    &quot;last_page&quot;: 1,
+    &quot;last_page_url&quot;: &quot;http://localhost/api/order?page=1&quot;,
+    &quot;links&quot;: [
+        {
+            &quot;url&quot;: null,
+            &quot;label&quot;: &quot;&amp;laquo; Previous&quot;,
+            &quot;active&quot;: false
+        },
+        {
+            &quot;url&quot;: &quot;http://localhost/api/order?page=1&quot;,
+            &quot;label&quot;: &quot;1&quot;,
+            &quot;active&quot;: true
+        },
+        {
+            &quot;url&quot;: null,
+            &quot;label&quot;: &quot;Next &amp;raquo;&quot;,
+            &quot;active&quot;: false
+        }
+    ],
+    &quot;next_page_url&quot;: null,
+    &quot;path&quot;: &quot;http://localhost/api/order&quot;,
+    &quot;per_page&quot;: 10,
+    &quot;prev_page_url&quot;: null,
+    &quot;to&quot;: null,
+    &quot;total&quot;: 0
 }</code>
  </pre>
     </span>
@@ -1343,7 +2036,19 @@ You can check the Dev Tools console for debugging information.</code></pre>
     <br>
 <p>Example: <code>application/json</code></p>
             </div>
-                        </form>
+                        <h4 class="fancy-heading-panel"><b>URL Parameters</b></h4>
+                    <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>size</code></b>&nbsp;&nbsp;
+<small>integer</small>&nbsp;
+<i>optional</i> &nbsp;
+                <input type="number" style="display: none"
+               step="any"               name="size"                data-endpoint="GETapi-order"
+               value="20"
+               data-component="url">
+    <br>
+<p>Taille par page. Par defaut = 20. Example: <code>20</code></p>
+            </div>
+                    </form>
 
                     <h2 id="gestion-de-order-POSTapi-order">Store a newly created resource in storage.</h2>
 
@@ -1479,7 +2184,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request GET \
-    --get "http://localhost/api/order/7" \
+    --get "http://localhost/api/order/9" \
     --header "Authorization: Bearer {token}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json"</code></pre></div>
@@ -1487,7 +2192,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://localhost/api/order/7"
+    "http://localhost/api/order/9"
 );
 
 const headers = {
@@ -1505,7 +2210,7 @@ fetch(url, {
 
 <span id="example-responses-GETapi-order--order_id-">
             <blockquote>
-            <p>Example response (401):</p>
+            <p>Example response (404):</p>
         </blockquote>
                 <details class="annotation">
             <summary style="cursor: pointer;">
@@ -1517,7 +2222,7 @@ access-control-allow-origin: *
  </code></pre></details>         <pre>
 
 <code class="language-json" style="max-height: 300px;">{
-    &quot;message&quot;: &quot;Unauthenticated.&quot;
+    &quot;message&quot;: &quot;No query results for model [App\\Models\\Order] 9&quot;
 }</code>
  </pre>
     </span>
@@ -1608,10 +2313,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="number" style="display: none"
                step="any"               name="order_id"                data-endpoint="GETapi-order--order_id-"
-               value="7"
+               value="9"
                data-component="url">
     <br>
-<p>The ID of the order. Example: <code>7</code></p>
+<p>The ID of the order. Example: <code>9</code></p>
             </div>
                     </form>
 
@@ -1628,7 +2333,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request PUT \
-    "http://localhost/api/order/15" \
+    "http://localhost/api/order/9" \
     --header "Authorization: Bearer {token}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json"</code></pre></div>
@@ -1636,7 +2341,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://localhost/api/order/15"
+    "http://localhost/api/order/9"
 );
 
 const headers = {
@@ -1745,10 +2450,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="number" style="display: none"
                step="any"               name="order_id"                data-endpoint="PUTapi-order--order_id-"
-               value="15"
+               value="9"
                data-component="url">
     <br>
-<p>The ID of the order. Example: <code>15</code></p>
+<p>The ID of the order. Example: <code>9</code></p>
             </div>
                     </form>
 
@@ -1765,7 +2470,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request DELETE \
-    "http://localhost/api/order/1" \
+    "http://localhost/api/order/6" \
     --header "Authorization: Bearer {token}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json"</code></pre></div>
@@ -1773,7 +2478,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://localhost/api/order/1"
+    "http://localhost/api/order/6"
 );
 
 const headers = {
@@ -1878,27 +2583,27 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="number" style="display: none"
                step="any"               name="order_id"                data-endpoint="DELETEapi-order--order_id-"
-               value="1"
+               value="6"
                data-component="url">
     <br>
-<p>The ID of the order. Example: <code>1</code></p>
+<p>The ID of the order. Example: <code>6</code></p>
             </div>
                     </form>
 
-                    <h2 id="gestion-de-order-GETapi-order_event--event_id-">Display a listing of the resource.</h2>
+                    <h2 id="gestion-de-order-GETapi-event_order--event_id-">Display a listing of the resource.</h2>
 
 <p>
 </p>
 
 <p>Liste de toutes les commandes pour un evenement</p>
 
-<span id="example-requests-GETapi-order_event--event_id-">
+<span id="example-requests-GETapi-event_order--event_id-">
 <blockquote>Example request:</blockquote>
 
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request GET \
-    --get "http://localhost/api/order_event/2" \
+    --get "http://localhost/api/event_order/2" \
     --header "Authorization: Bearer {token}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json"</code></pre></div>
@@ -1906,7 +2611,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://localhost/api/order_event/2"
+    "http://localhost/api/event_order/2"
 );
 
 const headers = {
@@ -1922,9 +2627,9 @@ fetch(url, {
 
 </span>
 
-<span id="example-responses-GETapi-order_event--event_id-">
+<span id="example-responses-GETapi-event_order--event_id-">
             <blockquote>
-            <p>Example response (401):</p>
+            <p>Example response (200):</p>
         </blockquote>
                 <details class="annotation">
             <summary style="cursor: pointer;">
@@ -1936,47 +2641,75 @@ access-control-allow-origin: *
  </code></pre></details>         <pre>
 
 <code class="language-json" style="max-height: 300px;">{
-    &quot;message&quot;: &quot;Unauthenticated.&quot;
+    &quot;current_page&quot;: 1,
+    &quot;data&quot;: [],
+    &quot;first_page_url&quot;: &quot;http://localhost/api/event_order/2?page=1&quot;,
+    &quot;from&quot;: null,
+    &quot;last_page&quot;: 1,
+    &quot;last_page_url&quot;: &quot;http://localhost/api/event_order/2?page=1&quot;,
+    &quot;links&quot;: [
+        {
+            &quot;url&quot;: null,
+            &quot;label&quot;: &quot;&amp;laquo; Previous&quot;,
+            &quot;active&quot;: false
+        },
+        {
+            &quot;url&quot;: &quot;http://localhost/api/event_order/2?page=1&quot;,
+            &quot;label&quot;: &quot;1&quot;,
+            &quot;active&quot;: true
+        },
+        {
+            &quot;url&quot;: null,
+            &quot;label&quot;: &quot;Next &amp;raquo;&quot;,
+            &quot;active&quot;: false
+        }
+    ],
+    &quot;next_page_url&quot;: null,
+    &quot;path&quot;: &quot;http://localhost/api/event_order/2&quot;,
+    &quot;per_page&quot;: 10,
+    &quot;prev_page_url&quot;: null,
+    &quot;to&quot;: null,
+    &quot;total&quot;: 0
 }</code>
  </pre>
     </span>
-<span id="execution-results-GETapi-order_event--event_id-" hidden>
+<span id="execution-results-GETapi-event_order--event_id-" hidden>
     <blockquote>Received response<span
-                id="execution-response-status-GETapi-order_event--event_id-"></span>:
+                id="execution-response-status-GETapi-event_order--event_id-"></span>:
     </blockquote>
-    <pre class="json"><code id="execution-response-content-GETapi-order_event--event_id-"
+    <pre class="json"><code id="execution-response-content-GETapi-event_order--event_id-"
       data-empty-response-text="<Empty response>" style="max-height: 400px;"></code></pre>
 </span>
-<span id="execution-error-GETapi-order_event--event_id-" hidden>
+<span id="execution-error-GETapi-event_order--event_id-" hidden>
     <blockquote>Request failed with error:</blockquote>
-    <pre><code id="execution-error-message-GETapi-order_event--event_id-">
+    <pre><code id="execution-error-message-GETapi-event_order--event_id-">
 
 Tip: Check that you&#039;re properly connected to the network.
 If you&#039;re a maintainer of ths API, verify that your API is running and you&#039;ve enabled CORS.
 You can check the Dev Tools console for debugging information.</code></pre>
 </span>
-<form id="form-GETapi-order_event--event_id-" data-method="GET"
-      data-path="api/order_event/{event_id}"
+<form id="form-GETapi-event_order--event_id-" data-method="GET"
+      data-path="api/event_order/{event_id}"
       data-authed="0"
       data-hasfiles="0"
       data-isarraybody="0"
       autocomplete="off"
-      onsubmit="event.preventDefault(); executeTryOut('GETapi-order_event--event_id-', this);">
+      onsubmit="event.preventDefault(); executeTryOut('GETapi-event_order--event_id-', this);">
     <h3>
         Request&nbsp;&nbsp;&nbsp;
                     <button type="button"
                     style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-tryout-GETapi-order_event--event_id-"
-                    onclick="tryItOut('GETapi-order_event--event_id-');">Try it out ⚡
+                    id="btn-tryout-GETapi-event_order--event_id-"
+                    onclick="tryItOut('GETapi-event_order--event_id-');">Try it out ⚡
             </button>
             <button type="button"
                     style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-canceltryout-GETapi-order_event--event_id-"
-                    onclick="cancelTryOut('GETapi-order_event--event_id-');" hidden>Cancel 🛑
+                    id="btn-canceltryout-GETapi-event_order--event_id-"
+                    onclick="cancelTryOut('GETapi-event_order--event_id-');" hidden>Cancel 🛑
             </button>&nbsp;&nbsp;
             <button type="submit"
                     style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-executetryout-GETapi-order_event--event_id-"
+                    id="btn-executetryout-GETapi-event_order--event_id-"
                     data-initial-text="Send Request 💥"
                     data-loading-text="⏱ Sending..."
                     hidden>Send Request 💥
@@ -1984,7 +2717,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
             </h3>
             <p>
             <small class="badge badge-green">GET</small>
-            <b><code>api/order_event/{event_id}</code></b>
+            <b><code>api/event_order/{event_id}</code></b>
         </p>
                 <h4 class="fancy-heading-panel"><b>Headers</b></h4>
                                 <div style="padding-left: 28px; clear: unset;">
@@ -1992,7 +2725,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 &nbsp;
  &nbsp;
                 <input type="text" style="display: none"
-                              name="Authorization"                data-endpoint="GETapi-order_event--event_id-"
+                              name="Authorization"                data-endpoint="GETapi-event_order--event_id-"
                value="Bearer {token}"
                data-component="header">
     <br>
@@ -2003,7 +2736,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 &nbsp;
  &nbsp;
                 <input type="text" style="display: none"
-                              name="Content-Type"                data-endpoint="GETapi-order_event--event_id-"
+                              name="Content-Type"                data-endpoint="GETapi-event_order--event_id-"
                value="application/json"
                data-component="header">
     <br>
@@ -2014,7 +2747,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 &nbsp;
  &nbsp;
                 <input type="text" style="display: none"
-                              name="Accept"                data-endpoint="GETapi-order_event--event_id-"
+                              name="Accept"                data-endpoint="GETapi-event_order--event_id-"
                value="application/json"
                data-component="header">
     <br>
@@ -2026,11 +2759,210 @@ You can check the Dev Tools console for debugging information.</code></pre>
 <small>integer</small>&nbsp;
  &nbsp;
                 <input type="number" style="display: none"
-               step="any"               name="event_id"                data-endpoint="GETapi-order_event--event_id-"
+               step="any"               name="event_id"                data-endpoint="GETapi-event_order--event_id-"
                value="2"
                data-component="url">
     <br>
 <p>Event ID. Example: <code>2</code></p>
+            </div>
+                    <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>size</code></b>&nbsp;&nbsp;
+<small>integer</small>&nbsp;
+<i>optional</i> &nbsp;
+                <input type="number" style="display: none"
+               step="any"               name="size"                data-endpoint="GETapi-event_order--event_id-"
+               value="20"
+               data-component="url">
+    <br>
+<p>Taille par page. Par defaut = 20. Example: <code>20</code></p>
+            </div>
+                    </form>
+
+                    <h2 id="gestion-de-order-GETapi-client_order--client_id-">Display a listing of the resource.</h2>
+
+<p>
+</p>
+
+<p>Liste de toutes les commandes d'un client</p>
+
+<span id="example-requests-GETapi-client_order--client_id-">
+<blockquote>Example request:</blockquote>
+
+
+<div class="bash-example">
+    <pre><code class="language-bash">curl --request GET \
+    --get "http://localhost/api/client_order/2" \
+    --header "Authorization: Bearer {token}" \
+    --header "Content-Type: application/json" \
+    --header "Accept: application/json"</code></pre></div>
+
+
+<div class="javascript-example">
+    <pre><code class="language-javascript">const url = new URL(
+    "http://localhost/api/client_order/2"
+);
+
+const headers = {
+    "Authorization": "Bearer {token}",
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+fetch(url, {
+    method: "GET",
+    headers,
+}).then(response =&gt; response.json());</code></pre></div>
+
+</span>
+
+<span id="example-responses-GETapi-client_order--client_id-">
+            <blockquote>
+            <p>Example response (200):</p>
+        </blockquote>
+                <details class="annotation">
+            <summary style="cursor: pointer;">
+                <small onclick="textContent = parentElement.parentElement.open ? 'Show headers' : 'Hide headers'">Show headers</small>
+            </summary>
+            <pre><code class="language-http">cache-control: no-cache, private
+content-type: application/json
+access-control-allow-origin: *
+ </code></pre></details>         <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;current_page&quot;: 1,
+    &quot;data&quot;: [],
+    &quot;first_page_url&quot;: &quot;http://localhost/api/client_order/2?page=1&quot;,
+    &quot;from&quot;: null,
+    &quot;last_page&quot;: 1,
+    &quot;last_page_url&quot;: &quot;http://localhost/api/client_order/2?page=1&quot;,
+    &quot;links&quot;: [
+        {
+            &quot;url&quot;: null,
+            &quot;label&quot;: &quot;&amp;laquo; Previous&quot;,
+            &quot;active&quot;: false
+        },
+        {
+            &quot;url&quot;: &quot;http://localhost/api/client_order/2?page=1&quot;,
+            &quot;label&quot;: &quot;1&quot;,
+            &quot;active&quot;: true
+        },
+        {
+            &quot;url&quot;: null,
+            &quot;label&quot;: &quot;Next &amp;raquo;&quot;,
+            &quot;active&quot;: false
+        }
+    ],
+    &quot;next_page_url&quot;: null,
+    &quot;path&quot;: &quot;http://localhost/api/client_order/2&quot;,
+    &quot;per_page&quot;: 10,
+    &quot;prev_page_url&quot;: null,
+    &quot;to&quot;: null,
+    &quot;total&quot;: 0
+}</code>
+ </pre>
+    </span>
+<span id="execution-results-GETapi-client_order--client_id-" hidden>
+    <blockquote>Received response<span
+                id="execution-response-status-GETapi-client_order--client_id-"></span>:
+    </blockquote>
+    <pre class="json"><code id="execution-response-content-GETapi-client_order--client_id-"
+      data-empty-response-text="<Empty response>" style="max-height: 400px;"></code></pre>
+</span>
+<span id="execution-error-GETapi-client_order--client_id-" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-GETapi-client_order--client_id-">
+
+Tip: Check that you&#039;re properly connected to the network.
+If you&#039;re a maintainer of ths API, verify that your API is running and you&#039;ve enabled CORS.
+You can check the Dev Tools console for debugging information.</code></pre>
+</span>
+<form id="form-GETapi-client_order--client_id-" data-method="GET"
+      data-path="api/client_order/{client_id}"
+      data-authed="0"
+      data-hasfiles="0"
+      data-isarraybody="0"
+      autocomplete="off"
+      onsubmit="event.preventDefault(); executeTryOut('GETapi-client_order--client_id-', this);">
+    <h3>
+        Request&nbsp;&nbsp;&nbsp;
+                    <button type="button"
+                    style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-tryout-GETapi-client_order--client_id-"
+                    onclick="tryItOut('GETapi-client_order--client_id-');">Try it out ⚡
+            </button>
+            <button type="button"
+                    style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-canceltryout-GETapi-client_order--client_id-"
+                    onclick="cancelTryOut('GETapi-client_order--client_id-');" hidden>Cancel 🛑
+            </button>&nbsp;&nbsp;
+            <button type="submit"
+                    style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-executetryout-GETapi-client_order--client_id-"
+                    data-initial-text="Send Request 💥"
+                    data-loading-text="⏱ Sending..."
+                    hidden>Send Request 💥
+            </button>
+            </h3>
+            <p>
+            <small class="badge badge-green">GET</small>
+            <b><code>api/client_order/{client_id}</code></b>
+        </p>
+                <h4 class="fancy-heading-panel"><b>Headers</b></h4>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Authorization</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Authorization"                data-endpoint="GETapi-client_order--client_id-"
+               value="Bearer {token}"
+               data-component="header">
+    <br>
+<p>Example: <code>Bearer {token}</code></p>
+            </div>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Content-Type</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Content-Type"                data-endpoint="GETapi-client_order--client_id-"
+               value="application/json"
+               data-component="header">
+    <br>
+<p>Example: <code>application/json</code></p>
+            </div>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Accept</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Accept"                data-endpoint="GETapi-client_order--client_id-"
+               value="application/json"
+               data-component="header">
+    <br>
+<p>Example: <code>application/json</code></p>
+            </div>
+                        <h4 class="fancy-heading-panel"><b>URL Parameters</b></h4>
+                    <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>client_id</code></b>&nbsp;&nbsp;
+<small>integer</small>&nbsp;
+ &nbsp;
+                <input type="number" style="display: none"
+               step="any"               name="client_id"                data-endpoint="GETapi-client_order--client_id-"
+               value="2"
+               data-component="url">
+    <br>
+<p>Client ID. Example: <code>2</code></p>
+            </div>
+                    <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>size</code></b>&nbsp;&nbsp;
+<small>integer</small>&nbsp;
+<i>optional</i> &nbsp;
+                <input type="number" style="display: none"
+               step="any"               name="size"                data-endpoint="GETapi-client_order--client_id-"
+               value="20"
+               data-component="url">
+    <br>
+<p>Taille par page. Par defaut = 20. Example: <code>20</code></p>
             </div>
                     </form>
 
@@ -2077,7 +3009,7 @@ fetch(url, {
 
 <span id="example-responses-GETapi-order_intents">
             <blockquote>
-            <p>Example response (401):</p>
+            <p>Example response (500):</p>
         </blockquote>
                 <details class="annotation">
             <summary style="cursor: pointer;">
@@ -2089,7 +3021,7 @@ access-control-allow-origin: *
  </code></pre></details>         <pre>
 
 <code class="language-json" style="max-height: 300px;">{
-    &quot;message&quot;: &quot;Unauthenticated.&quot;
+    &quot;message&quot;: &quot;Server Error&quot;
 }</code>
  </pre>
     </span>
@@ -2184,6 +3116,17 @@ You can check the Dev Tools console for debugging information.</code></pre>
                data-component="url">
     <br>
 <p>Event ID. Example: <code>2</code></p>
+            </div>
+                    <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>size</code></b>&nbsp;&nbsp;
+<small>integer</small>&nbsp;
+<i>optional</i> &nbsp;
+                <input type="number" style="display: none"
+               step="any"               name="size"                data-endpoint="GETapi-order_intents"
+               value="20"
+               data-component="url">
+    <br>
+<p>Taille par page. Par defaut = 20. Example: <code>20</code></p>
             </div>
                     </form>
 
@@ -2321,7 +3264,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request GET \
-    --get "http://localhost/api/order_intents/9" \
+    --get "http://localhost/api/order_intents/2" \
     --header "Authorization: Bearer {token}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json"</code></pre></div>
@@ -2329,7 +3272,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://localhost/api/order_intents/9"
+    "http://localhost/api/order_intents/2"
 );
 
 const headers = {
@@ -2347,7 +3290,7 @@ fetch(url, {
 
 <span id="example-responses-GETapi-order_intents--order_intent_id-">
             <blockquote>
-            <p>Example response (401):</p>
+            <p>Example response (404):</p>
         </blockquote>
                 <details class="annotation">
             <summary style="cursor: pointer;">
@@ -2359,7 +3302,7 @@ access-control-allow-origin: *
  </code></pre></details>         <pre>
 
 <code class="language-json" style="max-height: 300px;">{
-    &quot;message&quot;: &quot;Unauthenticated.&quot;
+    &quot;message&quot;: &quot;No query results for model [App\\Models\\OrderIntent] 2&quot;
 }</code>
  </pre>
     </span>
@@ -2450,10 +3393,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="number" style="display: none"
                step="any"               name="order_intent_id"                data-endpoint="GETapi-order_intents--order_intent_id-"
-               value="9"
+               value="2"
                data-component="url">
     <br>
-<p>The ID of the order intent. Example: <code>9</code></p>
+<p>The ID of the order intent. Example: <code>2</code></p>
             </div>
                     </form>
 
@@ -2470,7 +3413,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request PUT \
-    "http://localhost/api/order_intents/12" \
+    "http://localhost/api/order_intents/20" \
     --header "Authorization: Bearer {token}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json"</code></pre></div>
@@ -2478,7 +3421,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://localhost/api/order_intents/12"
+    "http://localhost/api/order_intents/20"
 );
 
 const headers = {
@@ -2587,10 +3530,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="number" style="display: none"
                step="any"               name="order_intent_id"                data-endpoint="PUTapi-order_intents--order_intent_id-"
-               value="12"
+               value="20"
                data-component="url">
     <br>
-<p>The ID of the order intent. Example: <code>12</code></p>
+<p>The ID of the order intent. Example: <code>20</code></p>
             </div>
                     </form>
 
@@ -2766,7 +3709,7 @@ fetch(url, {
 
 <span id="example-responses-GETapi-order_intents_event--event_id-">
             <blockquote>
-            <p>Example response (401):</p>
+            <p>Example response (200):</p>
         </blockquote>
                 <details class="annotation">
             <summary style="cursor: pointer;">
@@ -2778,7 +3721,35 @@ access-control-allow-origin: *
  </code></pre></details>         <pre>
 
 <code class="language-json" style="max-height: 300px;">{
-    &quot;message&quot;: &quot;Unauthenticated.&quot;
+    &quot;current_page&quot;: 1,
+    &quot;data&quot;: [],
+    &quot;first_page_url&quot;: &quot;http://localhost/api/order_intents_event/2?page=1&quot;,
+    &quot;from&quot;: null,
+    &quot;last_page&quot;: 1,
+    &quot;last_page_url&quot;: &quot;http://localhost/api/order_intents_event/2?page=1&quot;,
+    &quot;links&quot;: [
+        {
+            &quot;url&quot;: null,
+            &quot;label&quot;: &quot;&amp;laquo; Previous&quot;,
+            &quot;active&quot;: false
+        },
+        {
+            &quot;url&quot;: &quot;http://localhost/api/order_intents_event/2?page=1&quot;,
+            &quot;label&quot;: &quot;1&quot;,
+            &quot;active&quot;: true
+        },
+        {
+            &quot;url&quot;: null,
+            &quot;label&quot;: &quot;Next &amp;raquo;&quot;,
+            &quot;active&quot;: false
+        }
+    ],
+    &quot;next_page_url&quot;: null,
+    &quot;path&quot;: &quot;http://localhost/api/order_intents_event/2&quot;,
+    &quot;per_page&quot;: 10,
+    &quot;prev_page_url&quot;: null,
+    &quot;to&quot;: null,
+    &quot;total&quot;: 0
 }</code>
  </pre>
     </span>
@@ -2874,6 +3845,17 @@ You can check the Dev Tools console for debugging information.</code></pre>
     <br>
 <p>Event ID. Example: <code>2</code></p>
             </div>
+                    <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>size</code></b>&nbsp;&nbsp;
+<small>integer</small>&nbsp;
+<i>optional</i> &nbsp;
+                <input type="number" style="display: none"
+               step="any"               name="size"                data-endpoint="GETapi-order_intents_event--event_id-"
+               value="20"
+               data-component="url">
+    <br>
+<p>Taille par page. Par defaut = 20. Example: <code>20</code></p>
+            </div>
                     </form>
 
                     <h2 id="gestion-de-orderintent-POSTapi-validate_order_intents--order_intent_id-">Validation d&#039;une intention de commande</h2>
@@ -2889,7 +3871,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request POST \
-    "http://localhost/api/validate_order_intents/18" \
+    "http://localhost/api/validate_order_intents/17" \
     --header "Authorization: Bearer {token}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json"</code></pre></div>
@@ -2897,7 +3879,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://localhost/api/validate_order_intents/18"
+    "http://localhost/api/validate_order_intents/17"
 );
 
 const headers = {
@@ -3002,10 +3984,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="number" style="display: none"
                step="any"               name="order_intent_id"                data-endpoint="POSTapi-validate_order_intents--order_intent_id-"
-               value="18"
+               value="17"
                data-component="url">
     <br>
-<p>Example: <code>18</code></p>
+<p>Example: <code>17</code></p>
             </div>
                     </form>
 
@@ -3052,7 +4034,7 @@ fetch(url, {
 
 <span id="example-responses-GETapi-tickets">
             <blockquote>
-            <p>Example response (401):</p>
+            <p>Example response (500):</p>
         </blockquote>
                 <details class="annotation">
             <summary style="cursor: pointer;">
@@ -3064,7 +4046,7 @@ access-control-allow-origin: *
  </code></pre></details>         <pre>
 
 <code class="language-json" style="max-height: 300px;">{
-    &quot;message&quot;: &quot;Unauthenticated.&quot;
+    &quot;message&quot;: &quot;Server Error&quot;
 }</code>
  </pre>
     </span>
@@ -3159,6 +4141,17 @@ You can check the Dev Tools console for debugging information.</code></pre>
                data-component="url">
     <br>
 <p>Event ID. Example: <code>2</code></p>
+            </div>
+                    <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>size</code></b>&nbsp;&nbsp;
+<small>integer</small>&nbsp;
+<i>optional</i> &nbsp;
+                <input type="number" style="display: none"
+               step="any"               name="size"                data-endpoint="GETapi-tickets"
+               value="20"
+               data-component="url">
+    <br>
+<p>Taille par page. Par defaut = 20. Example: <code>20</code></p>
             </div>
                     </form>
 
@@ -3296,7 +4289,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request GET \
-    --get "http://localhost/api/tickets/7" \
+    --get "http://localhost/api/tickets/9" \
     --header "Authorization: Bearer {token}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json"</code></pre></div>
@@ -3304,7 +4297,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://localhost/api/tickets/7"
+    "http://localhost/api/tickets/9"
 );
 
 const headers = {
@@ -3322,7 +4315,7 @@ fetch(url, {
 
 <span id="example-responses-GETapi-tickets--ticket_id-">
             <blockquote>
-            <p>Example response (401):</p>
+            <p>Example response (404):</p>
         </blockquote>
                 <details class="annotation">
             <summary style="cursor: pointer;">
@@ -3334,7 +4327,7 @@ access-control-allow-origin: *
  </code></pre></details>         <pre>
 
 <code class="language-json" style="max-height: 300px;">{
-    &quot;message&quot;: &quot;Unauthenticated.&quot;
+    &quot;message&quot;: &quot;No query results for model [App\\Models\\Ticket] 9&quot;
 }</code>
  </pre>
     </span>
@@ -3425,10 +4418,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="number" style="display: none"
                step="any"               name="ticket_id"                data-endpoint="GETapi-tickets--ticket_id-"
-               value="7"
+               value="9"
                data-component="url">
     <br>
-<p>The ID of the ticket. Example: <code>7</code></p>
+<p>The ID of the ticket. Example: <code>9</code></p>
             </div>
                     </form>
 
@@ -3445,7 +4438,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request PUT \
-    "http://localhost/api/tickets/8" \
+    "http://localhost/api/tickets/1" \
     --header "Authorization: Bearer {token}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json"</code></pre></div>
@@ -3453,7 +4446,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://localhost/api/tickets/8"
+    "http://localhost/api/tickets/1"
 );
 
 const headers = {
@@ -3562,10 +4555,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="number" style="display: none"
                step="any"               name="ticket_id"                data-endpoint="PUTapi-tickets--ticket_id-"
-               value="8"
+               value="1"
                data-component="url">
     <br>
-<p>The ID of the ticket. Example: <code>8</code></p>
+<p>The ID of the ticket. Example: <code>1</code></p>
             </div>
                     </form>
 
@@ -3582,7 +4575,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request DELETE \
-    "http://localhost/api/tickets/17" \
+    "http://localhost/api/tickets/5" \
     --header "Authorization: Bearer {token}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json"</code></pre></div>
@@ -3590,7 +4583,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://localhost/api/tickets/17"
+    "http://localhost/api/tickets/5"
 );
 
 const headers = {
@@ -3695,10 +4688,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="number" style="display: none"
                step="any"               name="ticket_id"                data-endpoint="DELETEapi-tickets--ticket_id-"
-               value="17"
+               value="5"
                data-component="url">
     <br>
-<p>The ID of the ticket. Example: <code>17</code></p>
+<p>The ID of the ticket. Example: <code>5</code></p>
             </div>
                     </form>
 
@@ -3741,7 +4734,7 @@ fetch(url, {
 
 <span id="example-responses-GETapi-tick_event--event_id-">
             <blockquote>
-            <p>Example response (401):</p>
+            <p>Example response (200):</p>
         </blockquote>
                 <details class="annotation">
             <summary style="cursor: pointer;">
@@ -3753,7 +4746,35 @@ access-control-allow-origin: *
  </code></pre></details>         <pre>
 
 <code class="language-json" style="max-height: 300px;">{
-    &quot;message&quot;: &quot;Unauthenticated.&quot;
+    &quot;current_page&quot;: 1,
+    &quot;data&quot;: [],
+    &quot;first_page_url&quot;: &quot;http://localhost/api/tick_event/2?page=1&quot;,
+    &quot;from&quot;: null,
+    &quot;last_page&quot;: 1,
+    &quot;last_page_url&quot;: &quot;http://localhost/api/tick_event/2?page=1&quot;,
+    &quot;links&quot;: [
+        {
+            &quot;url&quot;: null,
+            &quot;label&quot;: &quot;&amp;laquo; Previous&quot;,
+            &quot;active&quot;: false
+        },
+        {
+            &quot;url&quot;: &quot;http://localhost/api/tick_event/2?page=1&quot;,
+            &quot;label&quot;: &quot;1&quot;,
+            &quot;active&quot;: true
+        },
+        {
+            &quot;url&quot;: null,
+            &quot;label&quot;: &quot;Next &amp;raquo;&quot;,
+            &quot;active&quot;: false
+        }
+    ],
+    &quot;next_page_url&quot;: null,
+    &quot;path&quot;: &quot;http://localhost/api/tick_event/2&quot;,
+    &quot;per_page&quot;: 10,
+    &quot;prev_page_url&quot;: null,
+    &quot;to&quot;: null,
+    &quot;total&quot;: 0
 }</code>
  </pre>
     </span>
@@ -3849,6 +4870,17 @@ You can check the Dev Tools console for debugging information.</code></pre>
     <br>
 <p>Event ID. Example: <code>2</code></p>
             </div>
+                    <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>size</code></b>&nbsp;&nbsp;
+<small>integer</small>&nbsp;
+<i>optional</i> &nbsp;
+                <input type="number" style="display: none"
+               step="any"               name="size"                data-endpoint="GETapi-tick_event--event_id-"
+               value="20"
+               data-component="url">
+    <br>
+<p>Taille par page. Par defaut = 20. Example: <code>20</code></p>
+            </div>
                     </form>
 
                     <h2 id="gestion-de-ticket-GETapi-ticket_event--event_id---ticket_type_id-">Display a listing of the resource.</h2>
@@ -3890,7 +4922,7 @@ fetch(url, {
 
 <span id="example-responses-GETapi-ticket_event--event_id---ticket_type_id-">
             <blockquote>
-            <p>Example response (401):</p>
+            <p>Example response (200):</p>
         </blockquote>
                 <details class="annotation">
             <summary style="cursor: pointer;">
@@ -3902,7 +4934,35 @@ access-control-allow-origin: *
  </code></pre></details>         <pre>
 
 <code class="language-json" style="max-height: 300px;">{
-    &quot;message&quot;: &quot;Unauthenticated.&quot;
+    &quot;current_page&quot;: 1,
+    &quot;data&quot;: [],
+    &quot;first_page_url&quot;: &quot;http://localhost/api/ticket_event/2/2?page=1&quot;,
+    &quot;from&quot;: null,
+    &quot;last_page&quot;: 1,
+    &quot;last_page_url&quot;: &quot;http://localhost/api/ticket_event/2/2?page=1&quot;,
+    &quot;links&quot;: [
+        {
+            &quot;url&quot;: null,
+            &quot;label&quot;: &quot;&amp;laquo; Previous&quot;,
+            &quot;active&quot;: false
+        },
+        {
+            &quot;url&quot;: &quot;http://localhost/api/ticket_event/2/2?page=1&quot;,
+            &quot;label&quot;: &quot;1&quot;,
+            &quot;active&quot;: true
+        },
+        {
+            &quot;url&quot;: null,
+            &quot;label&quot;: &quot;Next &amp;raquo;&quot;,
+            &quot;active&quot;: false
+        }
+    ],
+    &quot;next_page_url&quot;: null,
+    &quot;path&quot;: &quot;http://localhost/api/ticket_event/2/2&quot;,
+    &quot;per_page&quot;: 10,
+    &quot;prev_page_url&quot;: null,
+    &quot;to&quot;: null,
+    &quot;total&quot;: 0
 }</code>
  </pre>
     </span>
@@ -4009,6 +5069,17 @@ You can check the Dev Tools console for debugging information.</code></pre>
     <br>
 <p>TicketType ID. Example: <code>2</code></p>
             </div>
+                    <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>size</code></b>&nbsp;&nbsp;
+<small>integer</small>&nbsp;
+<i>optional</i> &nbsp;
+                <input type="number" style="display: none"
+               step="any"               name="size"                data-endpoint="GETapi-ticket_event--event_id---ticket_type_id-"
+               value="20"
+               data-component="url">
+    <br>
+<p>Taille par page. Par defaut = 20. Example: <code>20</code></p>
+            </div>
                     </form>
 
                 <h1 id="gestion-de-tickettype">Gestion de TicketType</h1>
@@ -4054,7 +5125,7 @@ fetch(url, {
 
 <span id="example-responses-GETapi-ticket_types">
             <blockquote>
-            <p>Example response (401):</p>
+            <p>Example response (500):</p>
         </blockquote>
                 <details class="annotation">
             <summary style="cursor: pointer;">
@@ -4066,7 +5137,7 @@ access-control-allow-origin: *
  </code></pre></details>         <pre>
 
 <code class="language-json" style="max-height: 300px;">{
-    &quot;message&quot;: &quot;Unauthenticated.&quot;
+    &quot;message&quot;: &quot;Server Error&quot;
 }</code>
  </pre>
     </span>
@@ -4298,7 +5369,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request GET \
-    --get "http://localhost/api/ticket_types/18" \
+    --get "http://localhost/api/ticket_types/17" \
     --header "Authorization: Bearer {token}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json"</code></pre></div>
@@ -4306,7 +5377,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://localhost/api/ticket_types/18"
+    "http://localhost/api/ticket_types/17"
 );
 
 const headers = {
@@ -4324,7 +5395,7 @@ fetch(url, {
 
 <span id="example-responses-GETapi-ticket_types--ticket_type_id-">
             <blockquote>
-            <p>Example response (401):</p>
+            <p>Example response (404):</p>
         </blockquote>
                 <details class="annotation">
             <summary style="cursor: pointer;">
@@ -4336,7 +5407,7 @@ access-control-allow-origin: *
  </code></pre></details>         <pre>
 
 <code class="language-json" style="max-height: 300px;">{
-    &quot;message&quot;: &quot;Unauthenticated.&quot;
+    &quot;message&quot;: &quot;No query results for model [App\\Models\\TicketType] 17&quot;
 }</code>
  </pre>
     </span>
@@ -4427,10 +5498,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="number" style="display: none"
                step="any"               name="ticket_type_id"                data-endpoint="GETapi-ticket_types--ticket_type_id-"
-               value="18"
+               value="17"
                data-component="url">
     <br>
-<p>The ID of the ticket type. Example: <code>18</code></p>
+<p>The ID of the ticket type. Example: <code>17</code></p>
             </div>
                     </form>
 
@@ -4447,7 +5518,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request PUT \
-    "http://localhost/api/ticket_types/3" \
+    "http://localhost/api/ticket_types/2" \
     --header "Authorization: Bearer {token}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json"</code></pre></div>
@@ -4455,7 +5526,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://localhost/api/ticket_types/3"
+    "http://localhost/api/ticket_types/2"
 );
 
 const headers = {
@@ -4564,10 +5635,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="number" style="display: none"
                step="any"               name="ticket_type_id"                data-endpoint="PUTapi-ticket_types--ticket_type_id-"
-               value="3"
+               value="2"
                data-component="url">
     <br>
-<p>The ID of the ticket type. Example: <code>3</code></p>
+<p>The ID of the ticket type. Example: <code>2</code></p>
             </div>
                     </form>
 
@@ -4584,7 +5655,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request DELETE \
-    "http://localhost/api/ticket_types/1" \
+    "http://localhost/api/ticket_types/16" \
     --header "Authorization: Bearer {token}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json"</code></pre></div>
@@ -4592,7 +5663,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://localhost/api/ticket_types/1"
+    "http://localhost/api/ticket_types/16"
 );
 
 const headers = {
@@ -4697,10 +5768,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="number" style="display: none"
                step="any"               name="ticket_type_id"                data-endpoint="DELETEapi-ticket_types--ticket_type_id-"
-               value="1"
+               value="16"
                data-component="url">
     <br>
-<p>The ID of the ticket type. Example: <code>1</code></p>
+<p>The ID of the ticket type. Example: <code>16</code></p>
             </div>
                     </form>
 
@@ -4743,7 +5814,7 @@ fetch(url, {
 
 <span id="example-responses-GETapi-tick_type_event--event_id-">
             <blockquote>
-            <p>Example response (401):</p>
+            <p>Example response (200):</p>
         </blockquote>
                 <details class="annotation">
             <summary style="cursor: pointer;">
@@ -4755,7 +5826,35 @@ access-control-allow-origin: *
  </code></pre></details>         <pre>
 
 <code class="language-json" style="max-height: 300px;">{
-    &quot;message&quot;: &quot;Unauthenticated.&quot;
+    &quot;current_page&quot;: 1,
+    &quot;data&quot;: [],
+    &quot;first_page_url&quot;: &quot;http://localhost/api/tick_type_event/2?page=1&quot;,
+    &quot;from&quot;: null,
+    &quot;last_page&quot;: 1,
+    &quot;last_page_url&quot;: &quot;http://localhost/api/tick_type_event/2?page=1&quot;,
+    &quot;links&quot;: [
+        {
+            &quot;url&quot;: null,
+            &quot;label&quot;: &quot;&amp;laquo; Previous&quot;,
+            &quot;active&quot;: false
+        },
+        {
+            &quot;url&quot;: &quot;http://localhost/api/tick_type_event/2?page=1&quot;,
+            &quot;label&quot;: &quot;1&quot;,
+            &quot;active&quot;: true
+        },
+        {
+            &quot;url&quot;: null,
+            &quot;label&quot;: &quot;Next &amp;raquo;&quot;,
+            &quot;active&quot;: false
+        }
+    ],
+    &quot;next_page_url&quot;: null,
+    &quot;path&quot;: &quot;http://localhost/api/tick_type_event/2&quot;,
+    &quot;per_page&quot;: 10,
+    &quot;prev_page_url&quot;: null,
+    &quot;to&quot;: null,
+    &quot;total&quot;: 0
 }</code>
  </pre>
     </span>

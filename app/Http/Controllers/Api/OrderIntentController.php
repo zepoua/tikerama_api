@@ -18,13 +18,20 @@ class OrderIntentController extends Controller
      * Display a listing of the resource.
      * Liste de toutes les intentions de commandes pour un evenement
      * @urlParam event_id int required Event ID. Example:2
+     * @urlParam size integer Taille par page. Par defaut = 20. Example:20
      * @header Authorization Bearer {token}
      */
-    public function index($event_id)
+    public function index(Request $request, $event_id)
     {
         //liste des intentions de commandes d'un evenement
 
-        return response()->json(OrderIntent::where('order_intent_event_id', $event_id)->get());
+        $size = $request->size ?? 10;
+        
+        $order_intents = OrderIntent::with(['event', 'client'])
+                        ->where('order_intent_event_id', $event_id)
+                        ->paginate($size);
+
+        return response()->json($order_intents);
     }
 
 

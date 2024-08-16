@@ -18,13 +18,19 @@ class TicketController extends Controller
      * Display a listing of the resource.
      * Liste des tickets pour un evenement
      * @urlParam event_id int required Event ID. Example:2
+     * @urlParam size integer Taille par page. Par defaut = 20. Example:20
      * @header Authorization Bearer {token}
      */
-    public function index($event_id)
+    public function index(Request $request, $event_id)
     {
         //liste d'un ticket pour un evenement
 
-        $tickets = Ticket::where('event_id', $event_id)->get();
+        $size = $request->size ?? 10;
+
+        $tickets = Ticket::with(['event', 'ticket_types'])
+                        ->where('ticket_event_id', $event_id)
+                        ->paginate($size);
+
         return response()->json($tickets);
     }
 
@@ -33,15 +39,19 @@ class TicketController extends Controller
      * Liste des tickets pour un evenement et un type de tycke specifique
      * @urlParam event_id int required Event ID. Example:2
      * @urlParam ticket_type_id int required TicketType ID. Example:2
+     * @urlParam size integer Taille par page. Par defaut = 20. Example:20
      * @header Authorization Bearer {token}
      */
-    public function ticketEvent($event_id, $ticket_type_id)
+    public function ticketEvent(Request $request, $event_id, $ticket_type_id)
     {
         //liste d'un ticket pour un evenement et un type de tycke specifique
 
-        $tickets = Ticket::where('event_id', $event_id)
-                            ->where('ticket_ticket_type-id', $ticket_type_id)
-                            ->get();
+        $size = $request->size ?? 10;
+
+        $tickets = Ticket::with(['event', 'ticket_types'])
+                        ->where('ticket_event_id', $event_id)
+                        ->where('ticket_ticket_type_id', $ticket_type_id)
+                        ->paginate($size);
 
         return response()->json($tickets);
     }

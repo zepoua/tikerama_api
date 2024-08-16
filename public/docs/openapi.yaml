@@ -7,28 +7,258 @@ servers:
   -
     url: 'http://localhost'
 paths:
-  /api/user:
+  /api/clients:
     get:
-      summary: ''
-      operationId: getApiUser
-      description: ''
+      summary: 'Display a listing of the resource.'
+      operationId: displayAListingOfTheResource
+      description: 'liste des clients'
       parameters: []
       responses:
-        401:
+        200:
           description: ''
           content:
             application/json:
               schema:
                 type: object
                 example:
-                  message: Unauthenticated.
+                  current_page: 1
+                  data:
+                    -
+                      client_id: 1
+                      nom: jjn
+                      prenom: hjj
+                      email: nnj
+                      telephone: '000000'
+                      adresse: jjj
+                      created_at: '2024-08-16T15:09:27.000000Z'
+                      updated_at: '2024-08-16T15:09:29.000000Z'
+                  first_page_url: 'http://localhost/api/clients?page=1'
+                  from: 1
+                  last_page: 1
+                  last_page_url: 'http://localhost/api/clients?page=1'
+                  links:
+                    -
+                      url: null
+                      label: '&laquo; Previous'
+                      active: false
+                    -
+                      url: 'http://localhost/api/clients?page=1'
+                      label: '1'
+                      active: true
+                    -
+                      url: null
+                      label: 'Next &raquo;'
+                      active: false
+                  next_page_url: null
+                  path: 'http://localhost/api/clients'
+                  per_page: 10
+                  prev_page_url: null
+                  to: 1
+                  total: 1
                 properties:
-                  message:
+                  current_page:
+                    type: integer
+                    example: 1
+                  data:
+                    type: array
+                    example:
+                      -
+                        client_id: 1
+                        nom: jjn
+                        prenom: hjj
+                        email: nnj
+                        telephone: '000000'
+                        adresse: jjj
+                        created_at: '2024-08-16T15:09:27.000000Z'
+                        updated_at: '2024-08-16T15:09:29.000000Z'
+                    items:
+                      type: object
+                      properties:
+                        client_id:
+                          type: integer
+                          example: 1
+                        nom:
+                          type: string
+                          example: jjn
+                        prenom:
+                          type: string
+                          example: hjj
+                        email:
+                          type: string
+                          example: nnj
+                        telephone:
+                          type: string
+                          example: '000000'
+                        adresse:
+                          type: string
+                          example: jjj
+                        created_at:
+                          type: string
+                          example: '2024-08-16T15:09:27.000000Z'
+                        updated_at:
+                          type: string
+                          example: '2024-08-16T15:09:29.000000Z'
+                  first_page_url:
                     type: string
-                    example: Unauthenticated.
+                    example: 'http://localhost/api/clients?page=1'
+                  from:
+                    type: integer
+                    example: 1
+                  last_page:
+                    type: integer
+                    example: 1
+                  last_page_url:
+                    type: string
+                    example: 'http://localhost/api/clients?page=1'
+                  links:
+                    type: array
+                    example:
+                      -
+                        url: null
+                        label: '&laquo; Previous'
+                        active: false
+                      -
+                        url: 'http://localhost/api/clients?page=1'
+                        label: '1'
+                        active: true
+                      -
+                        url: null
+                        label: 'Next &raquo;'
+                        active: false
+                    items:
+                      type: object
+                      properties:
+                        url:
+                          type: string
+                          example: null
+                        label:
+                          type: string
+                          example: '&laquo; Previous'
+                        active:
+                          type: boolean
+                          example: false
+                  next_page_url:
+                    type: string
+                    example: null
+                  path:
+                    type: string
+                    example: 'http://localhost/api/clients'
+                  per_page:
+                    type: integer
+                    example: 10
+                  prev_page_url:
+                    type: string
+                    example: null
+                  to:
+                    type: integer
+                    example: 1
+                  total:
+                    type: integer
+                    example: 1
       tags:
-        - Endpoints
+        - 'Gestion de Client'
       security: []
+    post:
+      summary: 'Store a newly created resource in storage.'
+      operationId: storeANewlyCreatedResourceInStorage
+      description: ''
+      parameters: []
+      responses: {  }
+      tags:
+        - 'Gestion de Client'
+      security: []
+    parameters:
+      -
+        in: path
+        name: size
+        description: 'Optional parameter. Taille par page. Par defaut = 20.'
+        required: true
+        schema:
+          type: integer
+        examples:
+          omitted:
+            summary: 'When the value is omitted'
+            value: ''
+          present:
+            summary: 'When the value is present'
+            value: 20
+  '/api/clients/{client_id}':
+    get:
+      summary: 'Display the specified resource.'
+      operationId: displayTheSpecifiedResource
+      description: ''
+      parameters: []
+      responses:
+        200:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  client_id: 1
+                  nom: jjn
+                  prenom: hjj
+                  email: nnj
+                  telephone: '000000'
+                  adresse: jjj
+                  created_at: '2024-08-16T15:09:27.000000Z'
+                  updated_at: '2024-08-16T15:09:29.000000Z'
+                properties:
+                  client_id:
+                    type: integer
+                    example: 1
+                  nom:
+                    type: string
+                    example: jjn
+                  prenom:
+                    type: string
+                    example: hjj
+                  email:
+                    type: string
+                    example: nnj
+                  telephone:
+                    type: string
+                    example: '000000'
+                  adresse:
+                    type: string
+                    example: jjj
+                  created_at:
+                    type: string
+                    example: '2024-08-16T15:09:27.000000Z'
+                  updated_at:
+                    type: string
+                    example: '2024-08-16T15:09:29.000000Z'
+      tags:
+        - 'Gestion de Client'
+      security: []
+    put:
+      summary: 'Update the specified resource in storage.'
+      operationId: updateTheSpecifiedResourceInStorage
+      description: ''
+      parameters: []
+      responses: {  }
+      tags:
+        - 'Gestion de Client'
+      security: []
+    delete:
+      summary: 'Remove the specified resource from storage.'
+      operationId: removeTheSpecifiedResourceFromStorage
+      description: ''
+      parameters: []
+      responses: {  }
+      tags:
+        - 'Gestion de Client'
+      security: []
+    parameters:
+      -
+        in: path
+        name: client_id
+        description: 'The ID of the client.'
+        example: 1
+        required: true
+        schema:
+          type: integer
   /api/events:
     get:
       summary: 'Display a listing of the resource.'
@@ -36,18 +266,157 @@ paths:
       description: 'Liste de tous les evenements par ordre decroissant de date et pagine'
       parameters: []
       responses:
-        401:
+        200:
           description: ''
           content:
             application/json:
               schema:
                 type: object
                 example:
-                  message: Unauthenticated.
+                  current_page: 1
+                  data:
+                    -
+                      event_id: 1
+                      event_category: Concert-Spectacle
+                      event_title: 'DJ Zepoua'
+                      event_description: concert
+                      event_date: '2024-08-15 21:11:36'
+                      event_image: uiii
+                      event_city: Lome
+                      event_address: Agoe
+                      event_status: upcoming
+                      event_created_on: '2024-08-15 21:11:59'
+                  first_page_url: 'http://localhost/api/events?page=1'
+                  from: 1
+                  last_page: 1
+                  last_page_url: 'http://localhost/api/events?page=1'
+                  links:
+                    -
+                      url: null
+                      label: '&laquo; Previous'
+                      active: false
+                    -
+                      url: 'http://localhost/api/events?page=1'
+                      label: '1'
+                      active: true
+                    -
+                      url: null
+                      label: 'Next &raquo;'
+                      active: false
+                  next_page_url: null
+                  path: 'http://localhost/api/events'
+                  per_page: 10
+                  prev_page_url: null
+                  to: 1
+                  total: 1
                 properties:
-                  message:
+                  current_page:
+                    type: integer
+                    example: 1
+                  data:
+                    type: array
+                    example:
+                      -
+                        event_id: 1
+                        event_category: Concert-Spectacle
+                        event_title: 'DJ Zepoua'
+                        event_description: concert
+                        event_date: '2024-08-15 21:11:36'
+                        event_image: uiii
+                        event_city: Lome
+                        event_address: Agoe
+                        event_status: upcoming
+                        event_created_on: '2024-08-15 21:11:59'
+                    items:
+                      type: object
+                      properties:
+                        event_id:
+                          type: integer
+                          example: 1
+                        event_category:
+                          type: string
+                          example: Concert-Spectacle
+                        event_title:
+                          type: string
+                          example: 'DJ Zepoua'
+                        event_description:
+                          type: string
+                          example: concert
+                        event_date:
+                          type: string
+                          example: '2024-08-15 21:11:36'
+                        event_image:
+                          type: string
+                          example: uiii
+                        event_city:
+                          type: string
+                          example: Lome
+                        event_address:
+                          type: string
+                          example: Agoe
+                        event_status:
+                          type: string
+                          example: upcoming
+                        event_created_on:
+                          type: string
+                          example: '2024-08-15 21:11:59'
+                  first_page_url:
                     type: string
-                    example: Unauthenticated.
+                    example: 'http://localhost/api/events?page=1'
+                  from:
+                    type: integer
+                    example: 1
+                  last_page:
+                    type: integer
+                    example: 1
+                  last_page_url:
+                    type: string
+                    example: 'http://localhost/api/events?page=1'
+                  links:
+                    type: array
+                    example:
+                      -
+                        url: null
+                        label: '&laquo; Previous'
+                        active: false
+                      -
+                        url: 'http://localhost/api/events?page=1'
+                        label: '1'
+                        active: true
+                      -
+                        url: null
+                        label: 'Next &raquo;'
+                        active: false
+                    items:
+                      type: object
+                      properties:
+                        url:
+                          type: string
+                          example: null
+                        label:
+                          type: string
+                          example: '&laquo; Previous'
+                        active:
+                          type: boolean
+                          example: false
+                  next_page_url:
+                    type: string
+                    example: null
+                  path:
+                    type: string
+                    example: 'http://localhost/api/events'
+                  per_page:
+                    type: integer
+                    example: 10
+                  prev_page_url:
+                    type: string
+                    example: null
+                  to:
+                    type: integer
+                    example: 1
+                  total:
+                    type: integer
+                    example: 1
       tags:
         - 'Gestion de Event'
       security: []
@@ -82,18 +451,54 @@ paths:
       description: ''
       parameters: []
       responses:
-        401:
+        200:
           description: ''
           content:
             application/json:
               schema:
                 type: object
                 example:
-                  message: Unauthenticated.
+                  event_id: 1
+                  event_category: Concert-Spectacle
+                  event_title: 'DJ Zepoua'
+                  event_description: concert
+                  event_date: '2024-08-15 21:11:36'
+                  event_image: uiii
+                  event_city: Lome
+                  event_address: Agoe
+                  event_status: upcoming
+                  event_created_on: '2024-08-15 21:11:59'
                 properties:
-                  message:
+                  event_id:
+                    type: integer
+                    example: 1
+                  event_category:
                     type: string
-                    example: Unauthenticated.
+                    example: Concert-Spectacle
+                  event_title:
+                    type: string
+                    example: 'DJ Zepoua'
+                  event_description:
+                    type: string
+                    example: concert
+                  event_date:
+                    type: string
+                    example: '2024-08-15 21:11:36'
+                  event_image:
+                    type: string
+                    example: uiii
+                  event_city:
+                    type: string
+                    example: Lome
+                  event_address:
+                    type: string
+                    example: Agoe
+                  event_status:
+                    type: string
+                    example: upcoming
+                  event_created_on:
+                    type: string
+                    example: '2024-08-15 21:11:59'
       tags:
         - 'Gestion de Event'
       security: []
@@ -131,18 +536,102 @@ paths:
       description: 'Liste de tous les evenements en cours par ordre decroissant de date et pagine'
       parameters: []
       responses:
-        401:
+        200:
           description: ''
           content:
             application/json:
               schema:
                 type: object
                 example:
-                  message: Unauthenticated.
+                  current_page: 1
+                  data: []
+                  first_page_url: 'http://localhost/api/up_events?page=1'
+                  from: null
+                  last_page: 1
+                  last_page_url: 'http://localhost/api/up_events?page=1'
+                  links:
+                    -
+                      url: null
+                      label: '&laquo; Previous'
+                      active: false
+                    -
+                      url: 'http://localhost/api/up_events?page=1'
+                      label: '1'
+                      active: true
+                    -
+                      url: null
+                      label: 'Next &raquo;'
+                      active: false
+                  next_page_url: null
+                  path: 'http://localhost/api/up_events'
+                  per_page: 10
+                  prev_page_url: null
+                  to: null
+                  total: 0
                 properties:
-                  message:
+                  current_page:
+                    type: integer
+                    example: 1
+                  data:
+                    type: array
+                    example: []
+                  first_page_url:
                     type: string
-                    example: Unauthenticated.
+                    example: 'http://localhost/api/up_events?page=1'
+                  from:
+                    type: string
+                    example: null
+                  last_page:
+                    type: integer
+                    example: 1
+                  last_page_url:
+                    type: string
+                    example: 'http://localhost/api/up_events?page=1'
+                  links:
+                    type: array
+                    example:
+                      -
+                        url: null
+                        label: '&laquo; Previous'
+                        active: false
+                      -
+                        url: 'http://localhost/api/up_events?page=1'
+                        label: '1'
+                        active: true
+                      -
+                        url: null
+                        label: 'Next &raquo;'
+                        active: false
+                    items:
+                      type: object
+                      properties:
+                        url:
+                          type: string
+                          example: null
+                        label:
+                          type: string
+                          example: '&laquo; Previous'
+                        active:
+                          type: boolean
+                          example: false
+                  next_page_url:
+                    type: string
+                    example: null
+                  path:
+                    type: string
+                    example: 'http://localhost/api/up_events'
+                  per_page:
+                    type: integer
+                    example: 10
+                  prev_page_url:
+                    type: string
+                    example: null
+                  to:
+                    type: string
+                    example: null
+                  total:
+                    type: integer
+                    example: 0
       tags:
         - 'Gestion de Event'
       security: []
@@ -165,21 +654,105 @@ paths:
     get:
       summary: 'Display a listing of the resource.'
       operationId: displayAListingOfTheResource
-      description: 'Liste de toutes les commandes'
+      description: "Liste de toutes les commandes d'un client"
       parameters: []
       responses:
-        401:
+        200:
           description: ''
           content:
             application/json:
               schema:
                 type: object
                 example:
-                  message: Unauthenticated.
+                  current_page: 1
+                  data: []
+                  first_page_url: 'http://localhost/api/order?page=1'
+                  from: null
+                  last_page: 1
+                  last_page_url: 'http://localhost/api/order?page=1'
+                  links:
+                    -
+                      url: null
+                      label: '&laquo; Previous'
+                      active: false
+                    -
+                      url: 'http://localhost/api/order?page=1'
+                      label: '1'
+                      active: true
+                    -
+                      url: null
+                      label: 'Next &raquo;'
+                      active: false
+                  next_page_url: null
+                  path: 'http://localhost/api/order'
+                  per_page: 10
+                  prev_page_url: null
+                  to: null
+                  total: 0
                 properties:
-                  message:
+                  current_page:
+                    type: integer
+                    example: 1
+                  data:
+                    type: array
+                    example: []
+                  first_page_url:
                     type: string
-                    example: Unauthenticated.
+                    example: 'http://localhost/api/order?page=1'
+                  from:
+                    type: string
+                    example: null
+                  last_page:
+                    type: integer
+                    example: 1
+                  last_page_url:
+                    type: string
+                    example: 'http://localhost/api/order?page=1'
+                  links:
+                    type: array
+                    example:
+                      -
+                        url: null
+                        label: '&laquo; Previous'
+                        active: false
+                      -
+                        url: 'http://localhost/api/order?page=1'
+                        label: '1'
+                        active: true
+                      -
+                        url: null
+                        label: 'Next &raquo;'
+                        active: false
+                    items:
+                      type: object
+                      properties:
+                        url:
+                          type: string
+                          example: null
+                        label:
+                          type: string
+                          example: '&laquo; Previous'
+                        active:
+                          type: boolean
+                          example: false
+                  next_page_url:
+                    type: string
+                    example: null
+                  path:
+                    type: string
+                    example: 'http://localhost/api/order'
+                  per_page:
+                    type: integer
+                    example: 10
+                  prev_page_url:
+                    type: string
+                    example: null
+                  to:
+                    type: string
+                    example: null
+                  total:
+                    type: integer
+                    example: 0
       tags:
         - 'Gestion de Order'
       security: []
@@ -192,6 +765,21 @@ paths:
       tags:
         - 'Gestion de Order'
       security: []
+    parameters:
+      -
+        in: path
+        name: size
+        description: 'Optional parameter. Taille par page. Par defaut = 20.'
+        required: true
+        schema:
+          type: integer
+        examples:
+          omitted:
+            summary: 'When the value is omitted'
+            value: ''
+          present:
+            summary: 'When the value is present'
+            value: 20
   '/api/order/{order_id}':
     get:
       summary: 'Display the specified resource.'
@@ -199,18 +787,18 @@ paths:
       description: ''
       parameters: []
       responses:
-        401:
+        404:
           description: ''
           content:
             application/json:
               schema:
                 type: object
                 example:
-                  message: Unauthenticated.
+                  message: 'No query results for model [App\Models\Order] 9'
                 properties:
                   message:
                     type: string
-                    example: Unauthenticated.
+                    example: 'No query results for model [App\Models\Order] 9'
       tags:
         - 'Gestion de Order'
       security: []
@@ -237,29 +825,113 @@ paths:
         in: path
         name: order_id
         description: 'The ID of the order.'
-        example: 7
+        example: 9
         required: true
         schema:
           type: integer
-  '/api/order_event/{event_id}':
+  '/api/event_order/{event_id}':
     get:
       summary: 'Display a listing of the resource.'
       operationId: displayAListingOfTheResource
       description: 'Liste de toutes les commandes pour un evenement'
       parameters: []
       responses:
-        401:
+        200:
           description: ''
           content:
             application/json:
               schema:
                 type: object
                 example:
-                  message: Unauthenticated.
+                  current_page: 1
+                  data: []
+                  first_page_url: 'http://localhost/api/event_order/2?page=1'
+                  from: null
+                  last_page: 1
+                  last_page_url: 'http://localhost/api/event_order/2?page=1'
+                  links:
+                    -
+                      url: null
+                      label: '&laquo; Previous'
+                      active: false
+                    -
+                      url: 'http://localhost/api/event_order/2?page=1'
+                      label: '1'
+                      active: true
+                    -
+                      url: null
+                      label: 'Next &raquo;'
+                      active: false
+                  next_page_url: null
+                  path: 'http://localhost/api/event_order/2'
+                  per_page: 10
+                  prev_page_url: null
+                  to: null
+                  total: 0
                 properties:
-                  message:
+                  current_page:
+                    type: integer
+                    example: 1
+                  data:
+                    type: array
+                    example: []
+                  first_page_url:
                     type: string
-                    example: Unauthenticated.
+                    example: 'http://localhost/api/event_order/2?page=1'
+                  from:
+                    type: string
+                    example: null
+                  last_page:
+                    type: integer
+                    example: 1
+                  last_page_url:
+                    type: string
+                    example: 'http://localhost/api/event_order/2?page=1'
+                  links:
+                    type: array
+                    example:
+                      -
+                        url: null
+                        label: '&laquo; Previous'
+                        active: false
+                      -
+                        url: 'http://localhost/api/event_order/2?page=1'
+                        label: '1'
+                        active: true
+                      -
+                        url: null
+                        label: 'Next &raquo;'
+                        active: false
+                    items:
+                      type: object
+                      properties:
+                        url:
+                          type: string
+                          example: null
+                        label:
+                          type: string
+                          example: '&laquo; Previous'
+                        active:
+                          type: boolean
+                          example: false
+                  next_page_url:
+                    type: string
+                    example: null
+                  path:
+                    type: string
+                    example: 'http://localhost/api/event_order/2'
+                  per_page:
+                    type: integer
+                    example: 10
+                  prev_page_url:
+                    type: string
+                    example: null
+                  to:
+                    type: string
+                    example: null
+                  total:
+                    type: integer
+                    example: 0
       tags:
         - 'Gestion de Order'
       security: []
@@ -272,6 +944,149 @@ paths:
         required: true
         schema:
           type: integer
+      -
+        in: path
+        name: size
+        description: 'Optional parameter. Taille par page. Par defaut = 20.'
+        required: true
+        schema:
+          type: integer
+        examples:
+          omitted:
+            summary: 'When the value is omitted'
+            value: ''
+          present:
+            summary: 'When the value is present'
+            value: 20
+  '/api/client_order/{client_id}':
+    get:
+      summary: 'Display a listing of the resource.'
+      operationId: displayAListingOfTheResource
+      description: "Liste de toutes les commandes d'un client"
+      parameters: []
+      responses:
+        200:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  current_page: 1
+                  data: []
+                  first_page_url: 'http://localhost/api/client_order/2?page=1'
+                  from: null
+                  last_page: 1
+                  last_page_url: 'http://localhost/api/client_order/2?page=1'
+                  links:
+                    -
+                      url: null
+                      label: '&laquo; Previous'
+                      active: false
+                    -
+                      url: 'http://localhost/api/client_order/2?page=1'
+                      label: '1'
+                      active: true
+                    -
+                      url: null
+                      label: 'Next &raquo;'
+                      active: false
+                  next_page_url: null
+                  path: 'http://localhost/api/client_order/2'
+                  per_page: 10
+                  prev_page_url: null
+                  to: null
+                  total: 0
+                properties:
+                  current_page:
+                    type: integer
+                    example: 1
+                  data:
+                    type: array
+                    example: []
+                  first_page_url:
+                    type: string
+                    example: 'http://localhost/api/client_order/2?page=1'
+                  from:
+                    type: string
+                    example: null
+                  last_page:
+                    type: integer
+                    example: 1
+                  last_page_url:
+                    type: string
+                    example: 'http://localhost/api/client_order/2?page=1'
+                  links:
+                    type: array
+                    example:
+                      -
+                        url: null
+                        label: '&laquo; Previous'
+                        active: false
+                      -
+                        url: 'http://localhost/api/client_order/2?page=1'
+                        label: '1'
+                        active: true
+                      -
+                        url: null
+                        label: 'Next &raquo;'
+                        active: false
+                    items:
+                      type: object
+                      properties:
+                        url:
+                          type: string
+                          example: null
+                        label:
+                          type: string
+                          example: '&laquo; Previous'
+                        active:
+                          type: boolean
+                          example: false
+                  next_page_url:
+                    type: string
+                    example: null
+                  path:
+                    type: string
+                    example: 'http://localhost/api/client_order/2'
+                  per_page:
+                    type: integer
+                    example: 10
+                  prev_page_url:
+                    type: string
+                    example: null
+                  to:
+                    type: string
+                    example: null
+                  total:
+                    type: integer
+                    example: 0
+      tags:
+        - 'Gestion de Order'
+      security: []
+    parameters:
+      -
+        in: path
+        name: client_id
+        description: 'Client ID.'
+        example: 2
+        required: true
+        schema:
+          type: integer
+      -
+        in: path
+        name: size
+        description: 'Optional parameter. Taille par page. Par defaut = 20.'
+        required: true
+        schema:
+          type: integer
+        examples:
+          omitted:
+            summary: 'When the value is omitted'
+            value: ''
+          present:
+            summary: 'When the value is present'
+            value: 20
   /api/order_intents:
     get:
       summary: 'Display a listing of the resource.'
@@ -279,18 +1094,18 @@ paths:
       description: 'Liste de toutes les intentions de commandes pour un evenement'
       parameters: []
       responses:
-        401:
+        500:
           description: ''
           content:
             application/json:
               schema:
                 type: object
                 example:
-                  message: Unauthenticated.
+                  message: 'Server Error'
                 properties:
                   message:
                     type: string
-                    example: Unauthenticated.
+                    example: 'Server Error'
       tags:
         - 'Gestion de OrderIntent'
       security: []
@@ -312,6 +1127,20 @@ paths:
         required: true
         schema:
           type: integer
+      -
+        in: path
+        name: size
+        description: 'Optional parameter. Taille par page. Par defaut = 20.'
+        required: true
+        schema:
+          type: integer
+        examples:
+          omitted:
+            summary: 'When the value is omitted'
+            value: ''
+          present:
+            summary: 'When the value is present'
+            value: 20
   '/api/order_intents/{order_intent_id}':
     get:
       summary: 'Display the specified resource.'
@@ -319,18 +1148,18 @@ paths:
       description: ''
       parameters: []
       responses:
-        401:
+        404:
           description: ''
           content:
             application/json:
               schema:
                 type: object
                 example:
-                  message: Unauthenticated.
+                  message: 'No query results for model [App\Models\OrderIntent] 2'
                 properties:
                   message:
                     type: string
-                    example: Unauthenticated.
+                    example: 'No query results for model [App\Models\OrderIntent] 2'
       tags:
         - 'Gestion de OrderIntent'
       security: []
@@ -357,7 +1186,7 @@ paths:
         in: path
         name: order_intent_id
         description: 'The ID of the order intent.'
-        example: 9
+        example: 2
         required: true
         schema:
           type: integer
@@ -368,18 +1197,102 @@ paths:
       description: 'Liste de toutes les intentions de commandes pour un evenement'
       parameters: []
       responses:
-        401:
+        200:
           description: ''
           content:
             application/json:
               schema:
                 type: object
                 example:
-                  message: Unauthenticated.
+                  current_page: 1
+                  data: []
+                  first_page_url: 'http://localhost/api/order_intents_event/2?page=1'
+                  from: null
+                  last_page: 1
+                  last_page_url: 'http://localhost/api/order_intents_event/2?page=1'
+                  links:
+                    -
+                      url: null
+                      label: '&laquo; Previous'
+                      active: false
+                    -
+                      url: 'http://localhost/api/order_intents_event/2?page=1'
+                      label: '1'
+                      active: true
+                    -
+                      url: null
+                      label: 'Next &raquo;'
+                      active: false
+                  next_page_url: null
+                  path: 'http://localhost/api/order_intents_event/2'
+                  per_page: 10
+                  prev_page_url: null
+                  to: null
+                  total: 0
                 properties:
-                  message:
+                  current_page:
+                    type: integer
+                    example: 1
+                  data:
+                    type: array
+                    example: []
+                  first_page_url:
                     type: string
-                    example: Unauthenticated.
+                    example: 'http://localhost/api/order_intents_event/2?page=1'
+                  from:
+                    type: string
+                    example: null
+                  last_page:
+                    type: integer
+                    example: 1
+                  last_page_url:
+                    type: string
+                    example: 'http://localhost/api/order_intents_event/2?page=1'
+                  links:
+                    type: array
+                    example:
+                      -
+                        url: null
+                        label: '&laquo; Previous'
+                        active: false
+                      -
+                        url: 'http://localhost/api/order_intents_event/2?page=1'
+                        label: '1'
+                        active: true
+                      -
+                        url: null
+                        label: 'Next &raquo;'
+                        active: false
+                    items:
+                      type: object
+                      properties:
+                        url:
+                          type: string
+                          example: null
+                        label:
+                          type: string
+                          example: '&laquo; Previous'
+                        active:
+                          type: boolean
+                          example: false
+                  next_page_url:
+                    type: string
+                    example: null
+                  path:
+                    type: string
+                    example: 'http://localhost/api/order_intents_event/2'
+                  per_page:
+                    type: integer
+                    example: 10
+                  prev_page_url:
+                    type: string
+                    example: null
+                  to:
+                    type: string
+                    example: null
+                  total:
+                    type: integer
+                    example: 0
       tags:
         - 'Gestion de OrderIntent'
       security: []
@@ -392,6 +1305,20 @@ paths:
         required: true
         schema:
           type: integer
+      -
+        in: path
+        name: size
+        description: 'Optional parameter. Taille par page. Par defaut = 20.'
+        required: true
+        schema:
+          type: integer
+        examples:
+          omitted:
+            summary: 'When the value is omitted'
+            value: ''
+          present:
+            summary: 'When the value is present'
+            value: 20
   '/api/validate_order_intents/{order_intent_id}':
     post:
       summary: "Validation d'une intention de commande"
@@ -407,7 +1334,7 @@ paths:
         in: path
         name: order_intent_id
         description: ''
-        example: 18
+        example: 17
         required: true
         schema:
           type: integer
@@ -418,18 +1345,18 @@ paths:
       description: 'Liste des tickets pour un evenement'
       parameters: []
       responses:
-        401:
+        500:
           description: ''
           content:
             application/json:
               schema:
                 type: object
                 example:
-                  message: Unauthenticated.
+                  message: 'Server Error'
                 properties:
                   message:
                     type: string
-                    example: Unauthenticated.
+                    example: 'Server Error'
       tags:
         - 'Gestion de Ticket'
       security: []
@@ -451,6 +1378,20 @@ paths:
         required: true
         schema:
           type: integer
+      -
+        in: path
+        name: size
+        description: 'Optional parameter. Taille par page. Par defaut = 20.'
+        required: true
+        schema:
+          type: integer
+        examples:
+          omitted:
+            summary: 'When the value is omitted'
+            value: ''
+          present:
+            summary: 'When the value is present'
+            value: 20
   '/api/tickets/{ticket_id}':
     get:
       summary: 'Display the specified resource.'
@@ -458,18 +1399,18 @@ paths:
       description: ''
       parameters: []
       responses:
-        401:
+        404:
           description: ''
           content:
             application/json:
               schema:
                 type: object
                 example:
-                  message: Unauthenticated.
+                  message: 'No query results for model [App\Models\Ticket] 9'
                 properties:
                   message:
                     type: string
-                    example: Unauthenticated.
+                    example: 'No query results for model [App\Models\Ticket] 9'
       tags:
         - 'Gestion de Ticket'
       security: []
@@ -496,7 +1437,7 @@ paths:
         in: path
         name: ticket_id
         description: 'The ID of the ticket.'
-        example: 7
+        example: 9
         required: true
         schema:
           type: integer
@@ -507,18 +1448,102 @@ paths:
       description: 'Liste des tickets pour un evenement'
       parameters: []
       responses:
-        401:
+        200:
           description: ''
           content:
             application/json:
               schema:
                 type: object
                 example:
-                  message: Unauthenticated.
+                  current_page: 1
+                  data: []
+                  first_page_url: 'http://localhost/api/tick_event/2?page=1'
+                  from: null
+                  last_page: 1
+                  last_page_url: 'http://localhost/api/tick_event/2?page=1'
+                  links:
+                    -
+                      url: null
+                      label: '&laquo; Previous'
+                      active: false
+                    -
+                      url: 'http://localhost/api/tick_event/2?page=1'
+                      label: '1'
+                      active: true
+                    -
+                      url: null
+                      label: 'Next &raquo;'
+                      active: false
+                  next_page_url: null
+                  path: 'http://localhost/api/tick_event/2'
+                  per_page: 10
+                  prev_page_url: null
+                  to: null
+                  total: 0
                 properties:
-                  message:
+                  current_page:
+                    type: integer
+                    example: 1
+                  data:
+                    type: array
+                    example: []
+                  first_page_url:
                     type: string
-                    example: Unauthenticated.
+                    example: 'http://localhost/api/tick_event/2?page=1'
+                  from:
+                    type: string
+                    example: null
+                  last_page:
+                    type: integer
+                    example: 1
+                  last_page_url:
+                    type: string
+                    example: 'http://localhost/api/tick_event/2?page=1'
+                  links:
+                    type: array
+                    example:
+                      -
+                        url: null
+                        label: '&laquo; Previous'
+                        active: false
+                      -
+                        url: 'http://localhost/api/tick_event/2?page=1'
+                        label: '1'
+                        active: true
+                      -
+                        url: null
+                        label: 'Next &raquo;'
+                        active: false
+                    items:
+                      type: object
+                      properties:
+                        url:
+                          type: string
+                          example: null
+                        label:
+                          type: string
+                          example: '&laquo; Previous'
+                        active:
+                          type: boolean
+                          example: false
+                  next_page_url:
+                    type: string
+                    example: null
+                  path:
+                    type: string
+                    example: 'http://localhost/api/tick_event/2'
+                  per_page:
+                    type: integer
+                    example: 10
+                  prev_page_url:
+                    type: string
+                    example: null
+                  to:
+                    type: string
+                    example: null
+                  total:
+                    type: integer
+                    example: 0
       tags:
         - 'Gestion de Ticket'
       security: []
@@ -531,6 +1556,20 @@ paths:
         required: true
         schema:
           type: integer
+      -
+        in: path
+        name: size
+        description: 'Optional parameter. Taille par page. Par defaut = 20.'
+        required: true
+        schema:
+          type: integer
+        examples:
+          omitted:
+            summary: 'When the value is omitted'
+            value: ''
+          present:
+            summary: 'When the value is present'
+            value: 20
   '/api/ticket_event/{event_id}/{ticket_type_id}':
     get:
       summary: 'Display a listing of the resource.'
@@ -538,18 +1577,102 @@ paths:
       description: 'Liste des tickets pour un evenement et un type de tycke specifique'
       parameters: []
       responses:
-        401:
+        200:
           description: ''
           content:
             application/json:
               schema:
                 type: object
                 example:
-                  message: Unauthenticated.
+                  current_page: 1
+                  data: []
+                  first_page_url: 'http://localhost/api/ticket_event/2/2?page=1'
+                  from: null
+                  last_page: 1
+                  last_page_url: 'http://localhost/api/ticket_event/2/2?page=1'
+                  links:
+                    -
+                      url: null
+                      label: '&laquo; Previous'
+                      active: false
+                    -
+                      url: 'http://localhost/api/ticket_event/2/2?page=1'
+                      label: '1'
+                      active: true
+                    -
+                      url: null
+                      label: 'Next &raquo;'
+                      active: false
+                  next_page_url: null
+                  path: 'http://localhost/api/ticket_event/2/2'
+                  per_page: 10
+                  prev_page_url: null
+                  to: null
+                  total: 0
                 properties:
-                  message:
+                  current_page:
+                    type: integer
+                    example: 1
+                  data:
+                    type: array
+                    example: []
+                  first_page_url:
                     type: string
-                    example: Unauthenticated.
+                    example: 'http://localhost/api/ticket_event/2/2?page=1'
+                  from:
+                    type: string
+                    example: null
+                  last_page:
+                    type: integer
+                    example: 1
+                  last_page_url:
+                    type: string
+                    example: 'http://localhost/api/ticket_event/2/2?page=1'
+                  links:
+                    type: array
+                    example:
+                      -
+                        url: null
+                        label: '&laquo; Previous'
+                        active: false
+                      -
+                        url: 'http://localhost/api/ticket_event/2/2?page=1'
+                        label: '1'
+                        active: true
+                      -
+                        url: null
+                        label: 'Next &raquo;'
+                        active: false
+                    items:
+                      type: object
+                      properties:
+                        url:
+                          type: string
+                          example: null
+                        label:
+                          type: string
+                          example: '&laquo; Previous'
+                        active:
+                          type: boolean
+                          example: false
+                  next_page_url:
+                    type: string
+                    example: null
+                  path:
+                    type: string
+                    example: 'http://localhost/api/ticket_event/2/2'
+                  per_page:
+                    type: integer
+                    example: 10
+                  prev_page_url:
+                    type: string
+                    example: null
+                  to:
+                    type: string
+                    example: null
+                  total:
+                    type: integer
+                    example: 0
       tags:
         - 'Gestion de Ticket'
       security: []
@@ -570,6 +1693,20 @@ paths:
         required: true
         schema:
           type: integer
+      -
+        in: path
+        name: size
+        description: 'Optional parameter. Taille par page. Par defaut = 20.'
+        required: true
+        schema:
+          type: integer
+        examples:
+          omitted:
+            summary: 'When the value is omitted'
+            value: ''
+          present:
+            summary: 'When the value is present'
+            value: 20
   /api/ticket_types:
     get:
       summary: 'Display a listing of the resource.'
@@ -577,18 +1714,18 @@ paths:
       description: 'Liste des tickets pour un evenement'
       parameters: []
       responses:
-        401:
+        500:
           description: ''
           content:
             application/json:
               schema:
                 type: object
                 example:
-                  message: Unauthenticated.
+                  message: 'Server Error'
                 properties:
                   message:
                     type: string
-                    example: Unauthenticated.
+                    example: 'Server Error'
       tags:
         - 'Gestion de TicketType'
       security: []
@@ -617,18 +1754,18 @@ paths:
       description: ''
       parameters: []
       responses:
-        401:
+        404:
           description: ''
           content:
             application/json:
               schema:
                 type: object
                 example:
-                  message: Unauthenticated.
+                  message: 'No query results for model [App\Models\TicketType] 17'
                 properties:
                   message:
                     type: string
-                    example: Unauthenticated.
+                    example: 'No query results for model [App\Models\TicketType] 17'
       tags:
         - 'Gestion de TicketType'
       security: []
@@ -655,7 +1792,7 @@ paths:
         in: path
         name: ticket_type_id
         description: 'The ID of the ticket type.'
-        example: 18
+        example: 17
         required: true
         schema:
           type: integer
@@ -666,18 +1803,102 @@ paths:
       description: 'Liste des tickets pour un evenement'
       parameters: []
       responses:
-        401:
+        200:
           description: ''
           content:
             application/json:
               schema:
                 type: object
                 example:
-                  message: Unauthenticated.
+                  current_page: 1
+                  data: []
+                  first_page_url: 'http://localhost/api/tick_type_event/2?page=1'
+                  from: null
+                  last_page: 1
+                  last_page_url: 'http://localhost/api/tick_type_event/2?page=1'
+                  links:
+                    -
+                      url: null
+                      label: '&laquo; Previous'
+                      active: false
+                    -
+                      url: 'http://localhost/api/tick_type_event/2?page=1'
+                      label: '1'
+                      active: true
+                    -
+                      url: null
+                      label: 'Next &raquo;'
+                      active: false
+                  next_page_url: null
+                  path: 'http://localhost/api/tick_type_event/2'
+                  per_page: 10
+                  prev_page_url: null
+                  to: null
+                  total: 0
                 properties:
-                  message:
+                  current_page:
+                    type: integer
+                    example: 1
+                  data:
+                    type: array
+                    example: []
+                  first_page_url:
                     type: string
-                    example: Unauthenticated.
+                    example: 'http://localhost/api/tick_type_event/2?page=1'
+                  from:
+                    type: string
+                    example: null
+                  last_page:
+                    type: integer
+                    example: 1
+                  last_page_url:
+                    type: string
+                    example: 'http://localhost/api/tick_type_event/2?page=1'
+                  links:
+                    type: array
+                    example:
+                      -
+                        url: null
+                        label: '&laquo; Previous'
+                        active: false
+                      -
+                        url: 'http://localhost/api/tick_type_event/2?page=1'
+                        label: '1'
+                        active: true
+                      -
+                        url: null
+                        label: 'Next &raquo;'
+                        active: false
+                    items:
+                      type: object
+                      properties:
+                        url:
+                          type: string
+                          example: null
+                        label:
+                          type: string
+                          example: '&laquo; Previous'
+                        active:
+                          type: boolean
+                          example: false
+                  next_page_url:
+                    type: string
+                    example: null
+                  path:
+                    type: string
+                    example: 'http://localhost/api/tick_type_event/2'
+                  per_page:
+                    type: integer
+                    example: 10
+                  prev_page_url:
+                    type: string
+                    example: null
+                  to:
+                    type: string
+                    example: null
+                  total:
+                    type: integer
+                    example: 0
       tags:
         - 'Gestion de TicketType'
       security: []
@@ -692,8 +1913,8 @@ paths:
           type: integer
 tags:
   -
-    name: Endpoints
-    description: ''
+    name: 'Gestion de Client'
+    description: "\nAPIs pour gerer les Clients"
   -
     name: 'Gestion de Event'
     description: "\nAPIs pour gerer les Events"
