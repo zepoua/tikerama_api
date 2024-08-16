@@ -7,10 +7,18 @@ use App\Models\OrderIntent;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
+/**
+ * @group Gestion de OrderIntent
+ *
+ * APIs pour gerer des OrderIntents
+**/
 class OrderIntentController extends Controller
 {
     /**
      * Display a listing of the resource.
+     * Liste de toutes les intentions de commandes pour un evenement
+     * @urlParam event_id int required Event ID. Example:2
+     * @header Authorization Bearer {token}
      */
     public function index($event_id)
     {
@@ -22,6 +30,7 @@ class OrderIntentController extends Controller
 
     /**
      * Store a newly created resource in storage.
+     * @header Authorization Bearer {token}
      */
     public function store(Request $request)
     {
@@ -85,6 +94,12 @@ class OrderIntentController extends Controller
 
     }
 
+
+    /**
+     * Validation d'une intention de commande
+     * @urlParam order_intent_id integer required
+     * @header Authorization Bearer {token}
+     */
     public function validateIntent($order_intent_id)
     {
         //chercher l'intention de commande concernee
@@ -120,6 +135,7 @@ class OrderIntentController extends Controller
 
     /**
      * Display the specified resource.
+     * @header Authorization Bearer {token}
      */
     public function show(OrderIntent $orderIntent)
     {
@@ -128,6 +144,7 @@ class OrderIntentController extends Controller
 
     /**
      * Update the specified resource in storage.
+     * @header Authorization Bearer {token}
      */
     public function update(Request $request, OrderIntent $orderIntent)
     {
@@ -195,6 +212,7 @@ class OrderIntentController extends Controller
 
     /**
      * Remove the specified resource from storage.
+     * @header Authorization Bearer {token}
      */
     public function destroy(OrderIntent $orderIntent)
     {

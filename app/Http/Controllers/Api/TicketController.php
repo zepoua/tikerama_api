@@ -7,10 +7,18 @@ use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
 use App\Http\Controllers\Controller;
 
+/**
+ * @group Gestion de Ticket
+ *
+ * APIs pour gerer des Tickets
+**/
 class TicketController extends Controller
 {
     /**
      * Display a listing of the resource.
+     * Liste des tickets pour un evenement
+     * @urlParam event_id int required Event ID. Example:2
+     * @header Authorization Bearer {token}
      */
     public function index($event_id)
     {
@@ -20,6 +28,13 @@ class TicketController extends Controller
         return response()->json($tickets);
     }
 
+    /**
+     * Display a listing of the resource.
+     * Liste des tickets pour un evenement et un type de tycke specifique
+     * @urlParam event_id int required Event ID. Example:2
+     * @urlParam ticket_type_id int required TicketType ID. Example:2
+     * @header Authorization Bearer {token}
+     */
     public function ticketEvent($event_id, $ticket_type_id)
     {
         //liste d'un ticket pour un evenement et un type de tycke specifique
@@ -33,6 +48,7 @@ class TicketController extends Controller
 
     /**
      * Store a newly created resource in storage.
+     * @header Authorization Bearer {token}
      */
     public function store(Request $request)
     {
@@ -102,6 +118,7 @@ class TicketController extends Controller
 
     /**
      * Display the specified resource.
+     * @header Authorization Bearer {token}
      */
     public function show(Ticket $ticket)
     {
@@ -110,6 +127,7 @@ class TicketController extends Controller
 
     /**
      * Update the specified resource in storage.
+     * @header Authorization Bearer {token}
      */
     public function update(Request $request, Ticket $ticket)
     {
@@ -179,6 +197,7 @@ class TicketController extends Controller
 
     /**
      * Remove the specified resource from storage.
+     * @header Authorization Bearer {token}
      */
     public function destroy(Ticket $ticket)
     {

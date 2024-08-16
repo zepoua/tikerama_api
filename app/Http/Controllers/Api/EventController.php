@@ -6,27 +6,43 @@ use App\Models\Event;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
+/**
+ * @group Gestion de Event
+ *
+ * APIs pour gerer les Events
+**/
 class EventController extends Controller
 {
     /**
      * Display a listing of the resource.
+     * Liste de tous les evenements par ordre decroissant de date et pagine
+     * @urlParam size integer Taille par page. Par defaut = 20. Example:20
+     * @header Authorization Bearer {token}
      */
-    public function index()
+    public function index(Request $request)
     {
         //Liste de tous les evenements par ordre decroissant de date et pagine par 10...
 
-        $events = Event::orderBy('event_date', 'DESC')->paginate(10);
+        $size = $request->size ?? 10;
+        $events = Event::orderBy('event_date', 'DESC')->paginate($size);
 
         return response()->json($events);
     }
 
-    public function upcomingEvents()
+    /**
+     * Display a listing of the resource.
+     * Liste de tous les evenements en cours par ordre decroissant de date et pagine
+     * @urlParam size integer Taille par page. Par defaut = 20. Example:20
+     * @header Authorization Bearer {token}
+     */
+    public function upcomingEvents(Request $request)
     {
         //Liste de tous les evenements en cours par ordre decroissant de date et pagine par 10...
 
+        $size = $request->size ?? 10;
         $events = Event::where('event_status', '==', 'upcoming')
                         ->orderBy('event_date', 'DESC')
-                        ->paginate(10);
+                        ->paginate($size);
 
         return response()->json($events);
     }
@@ -35,6 +51,7 @@ class EventController extends Controller
 
     /**
      * Store a newly created resource in storage.
+     * @header Authorization Bearer {token}
      */
     public function store(Request $request)
     {
@@ -106,6 +123,7 @@ class EventController extends Controller
 
     /**
      * Display the specified resource.
+     * @header Authorization Bearer {token}
      */
     public function show(Event $event)
     {
@@ -116,6 +134,7 @@ class EventController extends Controller
 
     /**
      * Update the specified resource in storage.
+     * @header Authorization Bearer {token}
      */
     public function update(Request $request, Event $event)
     {
@@ -194,6 +213,7 @@ class EventController extends Controller
 
     /**
      * Remove the specified resource from storage.
+     * @header Authorization Bearer {token}
      */
     public function destroy(Event $event)
     {

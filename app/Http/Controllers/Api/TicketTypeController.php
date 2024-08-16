@@ -6,10 +6,18 @@ use App\Models\TicketType;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
+/**
+ * @group Gestion de TicketType
+ *
+ * APIs pour gerer des TicketTypes
+**/
 class TicketTypeController extends Controller
 {
     /**
      * Display a listing of the resource.
+     * Liste des tickets pour un evenement
+     * @urlParam event_id int required Event ID. Example:2
+     * @header Authorization Bearer {token}
      */
     public function index($event_id)
     {
@@ -21,6 +29,7 @@ class TicketTypeController extends Controller
 
     /**
      * Store a newly created resource in storage.
+     * @header Authorization Bearer {token}
      */
     public function store(Request $request)
     {
@@ -84,6 +93,7 @@ class TicketTypeController extends Controller
 
     /**
      * Display the specified resource.
+     * @header Authorization Bearer {token}
      */
     public function show(TicketType $ticketType)
     {
@@ -94,6 +104,7 @@ class TicketTypeController extends Controller
 
     /**
      * Update the specified resource in storage.
+     * @header Authorization Bearer {token}
      */
     public function update(Request $request, TicketType $ticketType)
     {
@@ -155,6 +166,7 @@ class TicketTypeController extends Controller
 
     /**
      * Remove the specified resource from storage.
+     * @header Authorization Bearer {token}
      */
     public function destroy(TicketType $ticketType)
     {

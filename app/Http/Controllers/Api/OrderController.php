@@ -6,10 +6,17 @@ use App\Models\Order;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
+/**
+ * @group Gestion de Order
+ *
+ * APIs pour gerer les Orders
+**/
 class OrderController extends Controller
 {
     /**
      * Display a listing of the resource.
+     * Liste de toutes les commandes
+     *@header Authorization Bearer {token}
      */
     public function index()
     {
@@ -17,6 +24,13 @@ class OrderController extends Controller
 
         return response()->json(Order::all());
     }
+
+    /**
+     * Display a listing of the resource.
+     * Liste de toutes les commandes pour un evenement
+     * @urlParam event_id int required Event ID. Example:2
+     * @header Authorization Bearer {token}
+     */
 
     public function eventOrder($event_id)
     {
@@ -28,6 +42,7 @@ class OrderController extends Controller
 
     /**
      * Store a newly created resource in storage.
+     * @header Authorization Bearer {token}
      */
     public function store(Request $request)
     {
@@ -36,6 +51,7 @@ class OrderController extends Controller
 
     /**
      * Display the specified resource.
+     * @header Authorization Bearer {token}
      */
     public function show(Order $order)
     {
@@ -44,6 +60,7 @@ class OrderController extends Controller
 
     /**
      * Update the specified resource in storage.
+     * @header Authorization Bearer {token}
      */
     public function update(Request $request, Order $order)
     {
@@ -52,6 +69,7 @@ class OrderController extends Controller
 
     /**
      * Remove the specified resource from storage.
+     * @header Authorization Bearer {token}
      */
     public function destroy(Order $order)
     {

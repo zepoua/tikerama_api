@@ -5,14 +5,16 @@ use App\Http\Controllers\Api\OrderController;
 use App\Http\Controllers\Api\OrderIntentController;
 use App\Http\Controllers\Api\TicketController;
 use App\Http\Controllers\Api\TicketTypeController;
+use App\Http\Controllers\API\UserController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+
 
 Route::get('/user', function (Request $request) {
     return $request->user();
 })->middleware('auth:sanctum');
 
-Route::middleware(['auth:sanctum', 'abilities:check-status,place-orders'])->group(function () {
+Route::middleware(['auth:sanctum'])->group(function () {
 
     //route ressource pour les events (index, store, show, update, destroy)
     Route::apiResource('events', EventController::class);
@@ -41,7 +43,6 @@ Route::middleware(['auth:sanctum', 'abilities:check-status,place-orders'])->grou
     //route ressource pour les commandes (index, store, show, update, destroy)
     Route::apiResource('order', OrderController::class);
     //route des commande pour un event
-    Route::get('order_event/{event_id}', [OrderController::class, 'index']);
-
+    Route::get('order_event/{event_id}', [OrderController::class, 'eventOrder']);
 });
 
